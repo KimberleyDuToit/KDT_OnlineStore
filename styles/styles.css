@@ -113,6 +113,7 @@ h4 {
     background-size: cover;
 }
 
+/*Contact page /////////////////////////////////////////////////////////////////////////////////*/
 .mapouter {
     position: relative;
     text-align: right;
@@ -127,6 +128,33 @@ h4 {
     width: 100%;
 }
 
+/*Shop page /////////////////////////////////////////////////////////////////////////////////*/
+.shopPage {
+    display:inline-flex;
+    flex-wrap: wrap;
+    width:100%;
+}
+
+.filterBlock {
+    flex:1;
+    float:inline-start;
+    background-color: #808080;
+    max-width:20%;
+    height:fit-content;
+}
+
+.shopGrid {
+    flex:1; 
+    float:inline-end;
+    width: 80%;
+    display:grid;
+    grid-template-columns: 25% 25% 25% 25%;
+}
+
+.shopProduct {
+    grid-column: span 1;
+    grid-row: span 1;
+}
 
 /*Link styles /////////////////////////////////////////////////////////////////////////////////*/
 
