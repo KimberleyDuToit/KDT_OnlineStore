@@ -90,20 +90,29 @@ h4 {
 
 /*Home page ///////////////////////////////////////////////////////////////////////////////////*/
 
-.headerpanel {
+.headerPanel {
     background-color: #1f2d2e;
     min-height: 400px;
     background-position: center;
     background-size: cover;
 }
 
-.nametitle {
+.headerText {
     padding-left:2%;
     text-align:left;
     color: white;
     margin-top:auto;
     margin-bottom:auto;
 }
+
+/*About page /////////////////////////////////////////////////////////////////////////////////*/
+#aboutHeader {
+    background-color: #1f2d2e;
+    height: 200px;
+    background-position: center;
+    background-size: cover;
+}
+
 
 /*Link styles /////////////////////////////////////////////////////////////////////////////////*/
 
@@ -135,7 +144,7 @@ a#backtotop:hover {
     color: #fbad8e;
 }
 
-/*Modal /////////////////////////////////////////////////////////////////////////////////*/
+/*Modals /////////////////////////////////////////////////////////////////////////////////*/
 .modal-content {
     font-family: 'Montserrat', sans-serif;
     padding:15px; 
@@ -143,3 +152,9 @@ a#backtotop:hover {
 .modal-content > * {
     padding:20px; 
 }
+
+/*Cards /////////////////////////////////////////////////////////////////////////////////*/
+#aboutCard {
+    margin-right:20px;
+}
+

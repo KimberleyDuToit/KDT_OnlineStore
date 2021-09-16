@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="styles/styles.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="about.htm">
 </head>
 
 <body>
@@ -28,14 +29,14 @@
                 <ul class="navbar-nav nav-fill w-70 menulinks mx-auto">
                     <li class="nav-item"><a class="nav-link" href="#aboutme">SHOP</a></li>
                     <li class="nav-item"><a class="nav-link" href="#workexperience">LOOKBOOK</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#skills">ABOUT</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.htm">ABOUT</a></li>
                     <li class="nav-item"><a class="nav-link" href="#interests">CONTACT</a></li>
                 </ul>
                 <!--Button for Basket-->
                 <div>
                     <button id="basket" type="button"
                         class="btn btn-primary  my-xl-0 my-lg-0 my-md-3 my-sm-3 my-xs-3" data-bs-toggle="modal"
-                        data-bs-target="#portfolioLink">
+                        data-bs-target="#basketLink">
                         View Basket
                     </button>
                 </div>
@@ -43,9 +44,9 @@
         </nav>
         <!--Image and heading-->
         <header>
-            <div class="headerpanel container-fluid p-5" style="display:flex">
+            <div class="headerPanel container-fluid p-5" style="display:flex">
                     <div class="col-xl-10 col-lg-9 col-md-10 mx-auto my-auto  px-lg-0 px-md-5">
-                        <div class="nametitle">
+                        <div class="headerText">
                             <hgroup>
                                 <h1 id="name">Indoor plants</h1>
                                 <h2 id="title">Shop now</h2>
@@ -64,25 +65,25 @@
                 <section>
                     <div class="splitPage">
                         <div class="split1">
-                            <h3 class="splitHeader"class="splitHeader">Featured Products</h3>
+                            <h3 class="splitHeader">Featured Products</h3>
                             <div class="splitProductGrid">
                                 <div class="splitProduct">
                                     <h4>Product name</h4>
-                                    <p> Description</p>
+                                    <p>Description</p>
                                 </div>
                                 <div class="splitProduct">
                                     <h4>Product name</h4>
-                                    <p> Description</p>
+                                    <p>Description</p>
                                 </div>
                                 <div class="splitProduct">
                                     <h4>Product name</h4>
-                                    <p> Description</p>
+                                    <p>Description</p>
                                 </div> 
                             </div>                       
                         </div>
     
                         <div class="split2">
-                            <h3 class="splitHeader"class="splitHeader">New</h3>
+                            <h3 class="splitHeader">New</h3>
                             <div class="splitProductGrid">
                                 <div class="splitProduct">
                                     <h4>Product name</h4>
@@ -103,7 +104,7 @@
                     <hr>
 
     <!--Basket-->
-    <div class="modal fade" id="portfolioLink" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="basketLink" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
