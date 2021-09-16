@@ -113,6 +113,20 @@ h4 {
     background-size: cover;
 }
 
+.mapouter {
+    position: relative;
+    text-align: right;
+    height: 400px;
+    width: 90%;
+}
+
+.gmap_canvas {
+    overflow: hidden;
+    background: none;
+    height: 400px;
+    width: 100%;
+}
+
 
 /*Link styles /////////////////////////////////////////////////////////////////////////////////*/
 
