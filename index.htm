@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Online Store</title>
+    <meta charset="utf-8">
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="styles/styles.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="fullpage">
+        <a name="top"></a>
+        <!--Sticky nav-->
+        <nav class="navbar navbar-expand-lg navbar-dark sticky-top px-5 lhn">
+            <a class="navbar-brand" href="#">Frond</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav nav-fill w-70 menulinks mx-auto">
+                    <li class="nav-item"><a class="nav-link" href="#aboutme">SHOP</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#workexperience">LOOKBOOK</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#skills">ABOUT</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#interests">CONTACT</a></li>
+                </ul>
+                <!--Button for Basket-->
+                <div>
+                    <button id="basket" type="button"
+                        class="btn btn-primary  my-xl-0 my-lg-0 my-md-3 my-sm-3 my-xs-3" data-bs-toggle="modal"
+                        data-bs-target="#portfolioLink">
+                        View Basket
+                    </button>
+                </div>
+            </div>
+        </nav>
+        <!--Image and heading-->
+        <header>
+            <div class="headerpanel container-fluid p-5" style="display:flex">
+                    <div class="col-xl-10 col-lg-9 col-md-10 mx-auto my-auto  px-lg-0 px-md-5">
+                        <div class="nametitle">
+                            <hgroup>
+                                <h1 id="name">Indoor plants</h1>
+                                <h2 id="title">Shop now</h2>
+                            </hgroup>
+                        </div>
+                    </div>
+            </div>
+        </header>
+
+        <!--Main Info-->
+        <div class="mainarea container-fluid" style="display:flex">
+
+            <!--Section Content-->
+
+            <div class="content col-xl-8 p-5 mx-auto">
+                <section>
+                    <div class="splitPage">
+                        <div class="split1">
+                            <h3 class="splitHeader"class="splitHeader">Featured Products</h3>
+                            <div class="splitProductGrid">
+                                <div class="splitProduct">
+                                    <h4>Product name</h4>
+                                    <p> Description</p>
+                                </div>
+                                <div class="splitProduct">
+                                    <h4>Product name</h4>
+                                    <p> Description</p>
+                                </div>
+                                <div class="splitProduct">
+                                    <h4>Product name</h4>
+                                    <p> Description</p>
+                                </div> 
+                            </div>                       
+                        </div>
+    
+                        <div class="split2">
+                            <h3 class="splitHeader"class="splitHeader">New</h3>
+                            <div class="splitProductGrid">
+                                <div class="splitProduct">
+                                    <h4>Product name</h4>
+                                    <p> Description</p>
+                                </div>
+                                <div class="splitProduct">
+                                    <h4>Product name</h4>
+                                    <p> Description</p>
+                                </div>
+                                <div class="splitProduct">
+                                    <h4>Product name</h4>
+                                    <p> Description</p>
+                                </div>   
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <hr>
+
+    <!--Basket-->
+    <div class="modal fade" id="portfolioLink" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">My Basket</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul></ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a href="images/CV 2021_KDT.pdf" download>
+                        <button type="button" id="download" class="btn btn-primary">Checkout</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Javascript, Popper, Jquery bundle-->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" ></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>

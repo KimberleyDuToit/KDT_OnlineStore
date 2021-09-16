@@ -1,0 +1,145 @@
+/*General, fonts, nav /////////////////////////////////////////////////////////////////////////*/
+
+html {
+    background-color: #efefef;
+}
+
+.fullpage {
+    background-color: #efefef;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+}
+
+.mainarea {
+    flex-wrap: wrap;
+    padding:0%;
+}
+
+.content {
+    background-color: #efefef;
+}    
+
+#navbarSupportedContent{
+   vertical-align: middle;
+}
+
+.nav-item {
+   padding-left: 20px;
+   padding-right: 20px;
+}
+
+.lhn {
+   align-items: center;
+   background-color:#1d1d1d;
+   font-family: 'Montserrat', sans-serif;
+   color: white;
+}
+
+@font-face {
+    font-family:'Montserrat-Thin';
+    src: url("Montserrat/Montserrat-Thin.ttf")
+    format('truetype');
+}
+
+/*Headings ////////////////////////////////////////////////////////////////////////////////////*/
+
+h1#name {
+    font-size: 80px;
+}
+
+h2#title {
+    font-family:'Montserrat-Thin';
+    font-size:28px;
+    padding-top:15px;
+}
+
+h3 {
+    font-size: 24px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+
+h4 {
+    font-size:18px;
+    padding-bottom: 10px;
+}
+
+
+/*Split Page layout ///////////////////////////////////////////////////////////////////////////*/
+
+.splitPage {
+    display:inline-flex;
+    flex-wrap:wrap;
+    width:100%;
+}
+
+.split1 {
+    flex:1;
+    float:inline-start;
+}
+
+.split2 {
+    flex:1;
+    float:inline-end;
+}
+
+.splitProductGrid {
+    display:grid;
+    grid-template-columns: 33% 33% 33%;
+}
+
+/*Home page ///////////////////////////////////////////////////////////////////////////////////*/
+
+.headerpanel {
+    background-color: #1f2d2e;
+    min-height: 400px;
+    background-position: center;
+    background-size: cover;
+}
+
+.nametitle {
+    padding-left:2%;
+    text-align:left;
+    color: white;
+    margin-top:auto;
+    margin-bottom:auto;
+}
+
+/*Link styles /////////////////////////////////////////////////////////////////////////////////*/
+
+a:link {
+    color: rgb(255, 255, 255);
+}
+  
+a:visited {
+    color: rgb(192, 192, 192);
+}
+  
+a:hover {
+    color: #9e4e38;
+}
+
+a {
+    text-decoration: none;
+}
+
+a#backtotop:link {
+    color: #9e4e38;
+}
+
+a#backtotop:visited {
+    color: #9e4e38;
+}
+
+a#backtotop:hover {
+    color: #fbad8e;
+}
+
+/*Modal /////////////////////////////////////////////////////////////////////////////////*/
+.modal-content {
+    font-family: 'Montserrat', sans-serif;
+    padding:15px; 
+}
+.modal-content > * {
+    padding:20px; 
+}
