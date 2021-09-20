@@ -61,6 +61,7 @@
                         </div>
                         <div class="shopGrid">
                             <div class="shopProduct" v-for='(item, index) in plantRange'>
+                                <image class="productImage" :src="item.image" v.model="item.image"></image>
                                 <h4 v-model="item.name">{{item.name}}</h4>
                             </div>
                         </div>
@@ -124,7 +125,7 @@
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
-                                    image: ''
+                                    image: 'images/stock/philodendronbrasil.jpg'
                                 },
 
                                 {
@@ -134,7 +135,7 @@
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
-                                    image: ''
+                                    image: 'images/stock/philodendronsilver.jpg'
                                 },
 
                                 {
@@ -144,7 +145,7 @@
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
-                                    image: ''
+                                    image: 'images/stock/stringofhearts.jpg'
                                 },
 
                                 {
@@ -154,7 +155,7 @@
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
-                                    image: ''
+                                    image: 'images/stock/minimonstera.jpg'
                                 },
 
                                 {
@@ -164,7 +165,7 @@
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
-                                    image: ''
+                                    image: 'images/stock/monstera.jpg'
                                 },
 
                                 {
@@ -174,17 +175,7 @@
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
-                                    image: ''
-                                },
-
-                                {
-                                    name: 'Calla Lily',
-                                    type: 'Lily',
-                                    category: ['Standing'],
-                                    new: false,
-                                    featured: false,
-                                    addedToBasket: false,
-                                    image: ''
+                                    image: 'images/stock/peacelily.jpg'
                                 },
 
                                 {
@@ -194,17 +185,37 @@
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
-                                    image: ''
+                                    image: 'images/stock/umbrella.jpg'
                                 },
 
                                 {
-                                    name: 'Maidenhair Fern',
-                                    type: 'Fern',
-                                    category: ['Shade-loving', 'Standing'],
+                                    name: 'Aglaonema Kiwi',
+                                    type: 'Aglaonema',
+                                    category: ['Standing'],
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
-                                    image: ''
+                                    image: 'images/stock/aglaonemakiwi.jpg'
+                                },
+
+                                {
+                                    name: 'Aglaonema Spotted Star',
+                                    type: 'Aglaonema',
+                                    category: ['Standing'],
+                                    new: false,
+                                    featured: false,
+                                    addedToBasket: false,
+                                    image: 'images/stock/aglaonemaspottedstar.jpg'
+                                },
+
+                                {
+                                    name: 'Sanseveria Moonshine',
+                                    type: 'Sanseveria',
+                                    category: ['Standing'],
+                                    new: false,
+                                    featured: false,
+                                    addedToBasket: false,
+                                    image: 'images/stock/moonshine.jpg'
                                 },
 
                                 {
@@ -214,7 +225,7 @@
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
-                                    image: ''
+                                    image: 'images/stock/bluestarfern.jpg'
                                 },
 
                                 {
@@ -224,7 +235,17 @@
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
-                                    image: ''
+                                    image: 'images/stock/toothedbrakefern.jpg'
+                                },
+
+                                {
+                                    name: 'Stephania Erecta',
+                                    type: 'Stephania',
+                                    category: ['Standing', 'Rare'],
+                                    new: false,
+                                    featured: false,
+                                    addedToBasket: false,
+                                    image: 'images/stock/stephaniaerecta.jpg'
                                 },
 
                                 {
@@ -234,17 +255,37 @@
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
-                                    image: ''
+                                    image: 'images/stock/birdsnest.jpg'
                                 },
 
                                 {
-                                    name: 'Staghorn Fern',
-                                    type: 'Fern',
-                                    category: ['Mounted'],
+                                    name: 'ZZ Plant',
+                                    type: 'Zamioculcas',
+                                    category: ['Standing'],
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
-                                    image: ''
+                                    image: 'images/stock/zzplant.jpg'
+                                },
+
+                                {
+                                    name: 'Alocasia Dracon Scale',
+                                    type: 'Alocasia',
+                                    category: ['Standing'],
+                                    new: false,
+                                    featured: false,
+                                    addedToBasket: false,
+                                    image: 'images/stock/alocasiadragonscale.jpg'
+                                },
+
+                                {
+                                    name: 'Pink Syngonium',
+                                    type: 'Syngonium',
+                                    category: ['Standing'],
+                                    new: false,
+                                    featured: false,
+                                    addedToBasket: false,
+                                    image: 'images/stock/syngonium.jpg'
                                 },
 
                                 {
@@ -254,17 +295,27 @@
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
-                                    image: ''
+                                    image: 'images/stock/areca.jpg'
                                 },
 
                                 {
-                                    name: 'Oncidium Orchid',
-                                    type: 'Orchid',
+                                    name: 'Ponytail Palm',
+                                    type: 'Palm',
                                     category: ['Standing'],
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
-                                    image: ''
+                                    image: 'images/stock/beaucarniarecurvata.jpg'
+                                },
+
+                                {
+                                    name: 'Snake Plant',
+                                    type: 'Sanseveria',
+                                    category: ['Standing'],
+                                    new: false,
+                                    featured: false,
+                                    addedToBasket: false,
+                                    image: 'images/stock/sanseveria.jpg'
                                 },
 
                                 {
@@ -274,7 +325,7 @@
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
-                                    image: ''
+                                    image: 'images/stock/ficuslyrata.jpg'
                                 },
 
                                 {
@@ -284,17 +335,27 @@
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
-                                    image: ''
+                                    image: 'images/stock/syngoniumpixie.jpg'
                                 },
 
                                 {
-                                    name: 'Alocasia Amazonica Bambino',
+                                    name: 'Amazonica Bambino',
                                     type: 'Alocasia',
                                     category: ['Standing'],
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
-                                    image: ''
+                                    image: 'images/stock/alocasiaamazonicabambino.jpg'
+                                },
+
+                                {
+                                    name: 'Ficus Tineke',
+                                    type: 'Ficus',
+                                    category: ['Standing'],
+                                    new: false,
+                                    featured: false,
+                                    addedToBasket: false,
+                                    image: 'images/stock/ficustineke.jpg'
                                 },
 
                                 {
@@ -304,7 +365,217 @@
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
-                                    image: ''
+                                    image: 'images/stock/pilea.jpg'
+                                },
+
+                                {
+                                    name: 'Polka Dot Begonia',
+                                    type: 'Begonia',
+                                    category: ['Standing'],
+                                    new: true,
+                                    featured: false,
+                                    addedToBasket: false,
+                                    image: 'images/stock/begoniamaculata.jpg'
+                                },
+
+                                {
+                                    name: 'Begonia Arctic Breeze',
+                                    type: 'Begonia',
+                                    category: ['Standing'],
+                                    new: true,
+                                    featured: false,
+                                    addedToBasket: false,
+                                    image: 'images/stock/begoniaarcticbreeze.jpg'
+                                },
+
+                                {
+                                    name: 'Caladium Carolyn',
+                                    type: 'Caladium',
+                                    category: ['Standing'],
+                                    new: false,
+                                    featured: false,
+                                    addedToBasket: false,
+                                    image: 'images/stock/caladiumcarolyn.jpg'
+                                },
+
+                                {
+                                    name: 'Anthurium Clarinervium',
+                                    type: 'Anthurium',
+                                    category: ['Standing'],
+                                    new: false,
+                                    featured: false,
+                                    addedToBasket: false,
+                                    image: 'images/stock/anthuriumclarinervium.jpg'
+                                },
+
+                                {
+                                    name: 'White Anthurium',
+                                    type: 'Anthurium',
+                                    category: ['Standing'],
+                                    new: false,
+                                    featured: false,
+                                    addedToBasket: false,
+                                    image: 'images/stock/anthurium.jpg'
+                                },
+
+                                {
+                                    name: 'Calathea White Fusion',
+                                    type: 'Calathea',
+                                    category: ['Standing'],
+                                    new: false,
+                                    featured: false,
+                                    addedToBasket: false,
+                                    image: 'images/stock/calatheafusion.jpg'
+                                },
+
+                                {
+                                    name: 'Calathea Lancifolia',
+                                    type: 'Calathea',
+                                    category: ['Standing'],
+                                    new: false,
+                                    featured: false,
+                                    addedToBasket: false,
+                                    image: 'images/stock/calathealancifolea.jpg'
+                                },
+
+                                {
+                                    name: 'Rubber Plant',
+                                    type: 'Ficus',
+                                    category: ['Standing'],
+                                    new: false,
+                                    featured: false,
+                                    addedToBasket: false,
+                                    image: 'images/stock/ficusrobusta.jpg'
+                                },
+
+                                {
+                                    name: 'Calathea Makoyana',
+                                    type: 'Calathea',
+                                    category: ['Standing'],
+                                    new: false,
+                                    featured: false,
+                                    addedToBasket: false,
+                                    image: 'images/stock/calatheamakoyana.jpg'
+                                },
+
+                                {
+                                    name: 'Calathea Orbifolia',
+                                    type: 'Calathea',
+                                    category: ['Standing'],
+                                    new: false,
+                                    featured: false,
+                                    addedToBasket: false,
+                                    image: 'images/stock/calatheaorbifolia.jpg'
+                                },
+
+                                {
+                                    name: 'Monstera Albo',
+                                    type: 'Monstera',
+                                    category: ['Standing', 'Rare', 'Large'],
+                                    new: false,
+                                    featured: false,
+                                    addedToBasket: false,
+                                    image: 'images/stock/mosteravariegata.jpg'
+                                },
+
+                                {
+                                    name: 'Dragon Plant',
+                                    type: 'Dracaena',
+                                    category: ['Standing'],
+                                    new: false,
+                                    featured: false,
+                                    addedToBasket: false,
+                                    image: 'images/stock/dracaenafragrans.jpg'
+                                },
+
+                                {
+                                    name: 'Calathea White Star',
+                                    type: 'Calathea',
+                                    category: ['Standing'],
+                                    new: false,
+                                    featured: false,
+                                    addedToBasket: false,
+                                    image: 'images/stock/calatheawhitestar.jpg'
+                                },
+
+                                {
+                                    name: 'Calathea Zebrina',
+                                    type: 'Calathea',
+                                    category: ['Standing'],
+                                    new: false,
+                                    featured: false,
+                                    addedToBasket: false,
+                                    image: 'images/stock/calatheazebrina.jpg'
+                                },
+
+                                {
+                                    name: 'Golden Pothos',
+                                    type: 'Pothos',
+                                    category: ['Trailing'],
+                                    new: false,
+                                    featured: false,
+                                    addedToBasket: false,
+                                    image: 'images/stock/goldenpothos.jpg'
+                                },
+
+                                {
+                                    name: 'Mont Blanc',
+                                    type: 'Succulent',
+                                    category: ['Standing'],
+                                    new: false,
+                                    featured: false,
+                                    addedToBasket: false,
+                                    image: 'images/stock/montblanc.jpg'
+                                },
+
+                                {
+                                    name: 'Philodendron Verucosum',
+                                    type: 'Philodendron',
+                                    category: ['Standing'],
+                                    new: false,
+                                    featured: false,
+                                    addedToBasket: false,
+                                    image: 'images/stock/philodendronverucosum.jpg'
+                                },
+
+                                {
+                                    name: 'Satin Pothos',
+                                    type: 'Pothos',
+                                    category: ['Standing'],
+                                    new: false,
+                                    featured: false,
+                                    addedToBasket: false,
+                                    image: 'images/stock/scindaptuspictustrebie.jpg'
+                                },
+
+                                {
+                                    name: 'Philodendron Birkin',
+                                    type: 'Philodendron',
+                                    category: ['Standing'],
+                                    new: false,
+                                    featured: false,
+                                    addedToBasket: false,
+                                    image: 'images/stock/philodendronbirkin.jpg'
+                                },
+
+                                {
+                                    name: 'String of Pearls',
+                                    type: 'Succulent',
+                                    category: ['Trailing'],
+                                    new: false,
+                                    featured: false,
+                                    addedToBasket: false,
+                                    image: 'images/stock/stringofpearls.jpg'
+                                },
+
+                                {
+                                    name: 'Aloe Tiki Zilla',
+                                    type: 'Aloe',
+                                    category: ['Standing', 'Succulent'],
+                                    new: false,
+                                    featured: false,
+                                    addedToBasket: false,
+                                    image: 'images/stock/aloetikizilla.jpg'
                                 },
                             ],
 
