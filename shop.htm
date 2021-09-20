@@ -57,12 +57,49 @@
                 <section>
                     <div class="shopPage">
                         <div class="filterBlock">
-                            <h4>Filters:</h4>
+                            <h4>Sort:</h4>
+                            <button @click="sort('name')" id="sortName" type="button" class="btn btn-primary">Sort Alphabetically</button>
+                            <button @click="sort('price')" id="sortPrice" type="button" class="btn btn-primary">Sort by Price</button>
+                            <button @click="sort('type')" id="sortType" type="button" class="btn btn-primary">Sort by Type</button>
+                            <h4>Filter:</h4>
+                            <select name="Type of Plant">
+                                <option value="" disabled selected hidden>Type of Plant</option>
+                                <option value="All types">All types</option>
+                                <option value="Aglaonema">Aglaonema</option>
+                                <option value="Alocasia">Alocasia</option>
+                                <option value="Anthurium">Anthurium</option>
+                                <option value="Begonia">Begonia</option>
+                                <option value="Calathea">Calathea</option>
+                                <option value="Fern">Fern</option>
+                                <option value="Ficus">Ficus</option>
+                                <option value="Monstera">Monstera</option>
+                                <option value="Palm">Palm</option>
+                                <option value="Pothos">Pothos</option>
+                                <option value="Sanseveria">Sanseveria</option>
+                                <option value="Syngonium">Syngonium</option>
+                            </select>
+                            <div id="checkCategories">
+                                <input type="checkbox" id="checkTrailing">
+                                <label for="checkTrailing">Trailing</label>
+                                <input type="checkbox" id="checkClimbing">
+                                <label for="checkClimbing">Climbing</label>
+                                <input type="checkbox" id="checkStanding">
+                                <label for="checkStanding">Standing</label>
+                                <input type="checkbox" id="checkLarge">
+                                <label for="checkLarge">Large</label>
+                                <input type="checkbox" id="checkWaterwise">
+                                <label for="checkWaterwise">Water-wise</label>
+                                <input type="checkbox" id="checkRare">
+                                <label for="checkRare">Rare</label>
+                            </div>
+
+
                         </div>
                         <div class="shopGrid">
-                            <div class="shopProduct" v-for='(item, index) in plantRange'>
+                            <div class="shopProduct" v-for='(item, index) in sortedItems'>
                                 <image class="productImage" :src="item.image" v.model="item.image"></image>
                                 <h4 v-model="item.name">{{item.name}}</h4>
+                                <p v-model="item.type">{{item.type}}</p>
                             </div>
                         </div>
                     </div>
@@ -115,6 +152,7 @@
                                 featured: false,
                                 addedToBasket: false,
                                 image: '',
+                                price: '',
                             },
 
                             plantRange: [
@@ -125,7 +163,8 @@
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
-                                    image: 'images/stock/philodendronbrasil.jpg'
+                                    image: 'images/stock/philodendronbrasil.jpg',
+                                    price: '',
                                 },
 
                                 {
@@ -135,7 +174,8 @@
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
-                                    image: 'images/stock/philodendronsilver.jpg'
+                                    image: 'images/stock/philodendronsilver.jpg',
+                                    price: '',
                                 },
 
                                 {
@@ -145,7 +185,8 @@
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
-                                    image: 'images/stock/stringofhearts.jpg'
+                                    image: 'images/stock/stringofhearts.jpg',
+                                    price: '',
                                 },
 
                                 {
@@ -155,7 +196,8 @@
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
-                                    image: 'images/stock/minimonstera.jpg'
+                                    image: 'images/stock/minimonstera.jpg',
+                                    price: '',
                                 },
 
                                 {
@@ -165,7 +207,8 @@
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
-                                    image: 'images/stock/monstera.jpg'
+                                    image: 'images/stock/monstera.jpg',
+                                    price: '',
                                 },
 
                                 {
@@ -175,7 +218,8 @@
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
-                                    image: 'images/stock/peacelily.jpg'
+                                    image: 'images/stock/peacelily.jpg',
+                                    price: '',
                                 },
 
                                 {
@@ -185,7 +229,8 @@
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
-                                    image: 'images/stock/umbrella.jpg'
+                                    image: 'images/stock/umbrella.jpg',
+                                    price: '',
                                 },
 
                                 {
@@ -195,7 +240,8 @@
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
-                                    image: 'images/stock/aglaonemakiwi.jpg'
+                                    image: 'images/stock/aglaonemakiwi.jpg',
+                                    price: '',
                                 },
 
                                 {
@@ -205,7 +251,8 @@
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
-                                    image: 'images/stock/aglaonemaspottedstar.jpg'
+                                    image: 'images/stock/aglaonemaspottedstar.jpg',
+                                    price: '',
                                 },
 
                                 {
@@ -215,7 +262,8 @@
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
-                                    image: 'images/stock/moonshine.jpg'
+                                    image: 'images/stock/moonshine.jpg',
+                                    price: '',
                                 },
 
                                 {
@@ -225,7 +273,8 @@
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
-                                    image: 'images/stock/bluestarfern.jpg'
+                                    image: 'images/stock/bluestarfern.jpg',
+                                    price: '',
                                 },
 
                                 {
@@ -235,7 +284,8 @@
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
-                                    image: 'images/stock/toothedbrakefern.jpg'
+                                    image: 'images/stock/toothedbrakefern.jpg',
+                                    price: '',
                                 },
 
                                 {
@@ -245,7 +295,8 @@
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
-                                    image: 'images/stock/stephaniaerecta.jpg'
+                                    image: 'images/stock/stephaniaerecta.jpg',
+                                    price: '',
                                 },
 
                                 {
@@ -255,7 +306,8 @@
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
-                                    image: 'images/stock/birdsnest.jpg'
+                                    image: 'images/stock/birdsnest.jpg',
+                                    price: '',
                                 },
 
                                 {
@@ -265,7 +317,8 @@
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
-                                    image: 'images/stock/zzplant.jpg'
+                                    image: 'images/stock/zzplant.jpg',
+                                    price: '',
                                 },
 
                                 {
@@ -275,7 +328,8 @@
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
-                                    image: 'images/stock/alocasiadragonscale.jpg'
+                                    image: 'images/stock/alocasiadragonscale.jpg',
+                                    price: '',
                                 },
 
                                 {
@@ -285,7 +339,8 @@
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
-                                    image: 'images/stock/syngonium.jpg'
+                                    image: 'images/stock/syngonium.jpg',
+                                    price: '',
                                 },
 
                                 {
@@ -295,7 +350,8 @@
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
-                                    image: 'images/stock/areca.jpg'
+                                    image: 'images/stock/areca.jpg',
+                                    price: '',
                                 },
 
                                 {
@@ -305,7 +361,8 @@
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
-                                    image: 'images/stock/beaucarniarecurvata.jpg'
+                                    image: 'images/stock/beaucarniarecurvata.jpg',
+                                    price: '',
                                 },
 
                                 {
@@ -315,7 +372,8 @@
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
-                                    image: 'images/stock/sanseveria.jpg'
+                                    image: 'images/stock/sanseveria.jpg',
+                                    price: '',
                                 },
 
                                 {
@@ -325,7 +383,8 @@
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
-                                    image: 'images/stock/ficuslyrata.jpg'
+                                    image: 'images/stock/ficuslyrata.jpg',
+                                    price: '',
                                 },
 
                                 {
@@ -335,7 +394,8 @@
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
-                                    image: 'images/stock/syngoniumpixie.jpg'
+                                    image: 'images/stock/syngoniumpixie.jpg',
+                                    price: '',
                                 },
 
                                 {
@@ -345,7 +405,8 @@
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
-                                    image: 'images/stock/alocasiaamazonicabambino.jpg'
+                                    image: 'images/stock/alocasiaamazonicabambino.jpg',
+                                    price: '',
                                 },
 
                                 {
@@ -355,7 +416,8 @@
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
-                                    image: 'images/stock/ficustineke.jpg'
+                                    image: 'images/stock/ficustineke.jpg',
+                                    price: '',
                                 },
 
                                 {
@@ -365,7 +427,8 @@
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
-                                    image: 'images/stock/pilea.jpg'
+                                    image: 'images/stock/pilea.jpg',
+                                    price: '',
                                 },
 
                                 {
@@ -375,7 +438,8 @@
                                     new: true,
                                     featured: false,
                                     addedToBasket: false,
-                                    image: 'images/stock/begoniamaculata.jpg'
+                                    image: 'images/stock/begoniamaculata.jpg',
+                                    price: '',
                                 },
 
                                 {
@@ -385,7 +449,8 @@
                                     new: true,
                                     featured: false,
                                     addedToBasket: false,
-                                    image: 'images/stock/begoniaarcticbreeze.jpg'
+                                    image: 'images/stock/begoniaarcticbreeze.jpg',
+                                    price: '',
                                 },
 
                                 {
@@ -395,7 +460,8 @@
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
-                                    image: 'images/stock/caladiumcarolyn.jpg'
+                                    image: 'images/stock/caladiumcarolyn.jpg',
+                                    price: '',
                                 },
 
                                 {
@@ -405,7 +471,8 @@
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
-                                    image: 'images/stock/anthuriumclarinervium.jpg'
+                                    image: 'images/stock/anthuriumclarinervium.jpg',
+                                    price: '',
                                 },
 
                                 {
@@ -415,7 +482,8 @@
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
-                                    image: 'images/stock/anthurium.jpg'
+                                    image: 'images/stock/anthurium.jpg',
+                                    price: '',
                                 },
 
                                 {
@@ -425,7 +493,8 @@
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
-                                    image: 'images/stock/calatheafusion.jpg'
+                                    image: 'images/stock/calatheafusion.jpg',
+                                    price: '',
                                 },
 
                                 {
@@ -435,7 +504,8 @@
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
-                                    image: 'images/stock/calathealancifolea.jpg'
+                                    image: 'images/stock/calathealancifolea.jpg',
+                                    price: '',
                                 },
 
                                 {
@@ -445,7 +515,8 @@
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
-                                    image: 'images/stock/ficusrobusta.jpg'
+                                    image: 'images/stock/ficusrobusta.jpg',
+                                    price: '',
                                 },
 
                                 {
@@ -455,7 +526,8 @@
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
-                                    image: 'images/stock/calatheamakoyana.jpg'
+                                    image: 'images/stock/calatheamakoyana.jpg',
+                                    price: '',
                                 },
 
                                 {
@@ -465,7 +537,8 @@
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
-                                    image: 'images/stock/calatheaorbifolia.jpg'
+                                    image: 'images/stock/calatheaorbifolia.jpg',
+                                    price: '',
                                 },
 
                                 {
@@ -475,7 +548,8 @@
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
-                                    image: 'images/stock/mosteravariegata.jpg'
+                                    image: 'images/stock/mosteravariegata.jpg',
+                                    price: '',
                                 },
 
                                 {
@@ -485,7 +559,8 @@
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
-                                    image: 'images/stock/dracaenafragrans.jpg'
+                                    image: 'images/stock/dracaenafragrans.jpg',
+                                    price: '',
                                 },
 
                                 {
@@ -495,7 +570,8 @@
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
-                                    image: 'images/stock/calatheawhitestar.jpg'
+                                    image: 'images/stock/calatheawhitestar.jpg',
+                                    price: '',
                                 },
 
                                 {
@@ -505,7 +581,8 @@
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
-                                    image: 'images/stock/calatheazebrina.jpg'
+                                    image: 'images/stock/calatheazebrina.jpg',
+                                    price: '',
                                 },
 
                                 {
@@ -515,7 +592,8 @@
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
-                                    image: 'images/stock/goldenpothos.jpg'
+                                    image: 'images/stock/goldenpothos.jpg',
+                                    price: '',
                                 },
 
                                 {
@@ -525,7 +603,8 @@
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
-                                    image: 'images/stock/montblanc.jpg'
+                                    image: 'images/stock/montblanc.jpg',
+                                    price: '',
                                 },
 
                                 {
@@ -535,7 +614,8 @@
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
-                                    image: 'images/stock/philodendronverucosum.jpg'
+                                    image: 'images/stock/philodendronverucosum.jpg',
+                                    price: '',
                                 },
 
                                 {
@@ -545,7 +625,8 @@
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
-                                    image: 'images/stock/scindaptuspictustrebie.jpg'
+                                    image: 'images/stock/scindaptuspictustrebie.jpg',
+                                    price: '',
                                 },
 
                                 {
@@ -555,7 +636,8 @@
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
-                                    image: 'images/stock/philodendronbirkin.jpg'
+                                    image: 'images/stock/philodendronbirkin.jpg',
+                                    price: '',
                                 },
 
                                 {
@@ -565,7 +647,8 @@
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
-                                    image: 'images/stock/stringofpearls.jpg'
+                                    image: 'images/stock/stringofpearls.jpg',
+                                    price: '',
                                 },
 
                                 {
@@ -575,7 +658,8 @@
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
-                                    image: 'images/stock/aloetikizilla.jpg'
+                                    image: 'images/stock/aloetikizilla.jpg',
+                                    price: '',
                                 },
                             ],
 
@@ -584,6 +668,27 @@
                             sortBy: 'name',
                             sortDirection: 'asc',
                         },
+
+                        methods: {
+                            sort: function (s) {
+                                if (s === this.sortBy) {
+                                    this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
+                                }
+                                this.sortBy = s;
+                            }
+                        },
+
+                        computed: {
+                            sortedItems: function () {
+                                return this.plantRange.sort((p1, p2) => {
+                                    let modifier = 1;
+                                    if (this.sortDirection === 'desc') modifier = -1;
+                                    if (p1[this.sortBy] < p2[this.sortBy]) return -1 * modifier; if (p1[this.sortBy] > p2[this.sortBy]) return 1 * modifier;
+                                    return 0;
+                                });
+                            }
+                        },
+
                     })
                 </script>
 
