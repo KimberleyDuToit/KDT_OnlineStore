@@ -108,10 +108,33 @@ h4 {
 /*About page /////////////////////////////////////////////////////////////////////////////////*/
 #aboutHeader {
     background-color: #1f2d2e;
+    background-image: url("store2.jpg");
     height: 200px;
     background-position: center;
     background-size: cover;
 }
+
+div#aboutCard {
+    padding-left:40px;
+    padding-right:40px;
+    padding-bottom: 10px;
+}
+
+.splitTeamGrid {
+    display:grid;
+    grid-template-columns: 33% 33% 33%;
+}
+
+.teamPic {
+    margin-bottom: 20px;
+    max-width: 170px;
+    border-radius: 4px;
+}
+
+h4.teamMemberName {
+    padding-bottom: 0px;
+}
+
 
 /*Contact page /////////////////////////////////////////////////////////////////////////////////*/
 .mapouter {
@@ -126,6 +149,16 @@ h4 {
     background: none;
     height: 400px;
     width: 100%;
+}
+
+.formLine {
+    margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: 25% 40%;
+}
+
+#messageBox {
+    height: 100px;
 }
 
 /*Shop page /////////////////////////////////////////////////////////////////////////////////*/
