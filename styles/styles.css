@@ -188,9 +188,26 @@ h4.teamMemberName {
     grid-column: span 1;
     grid-row: span 1;
 }
-
+;
 .productImage {
     max-width: 210px;
+}
+
+.basketList {
+    list-style:none;
+    padding-left:0px;
+}
+
+.basketItem {
+    padding-bottom: 10px;
+    display:grid;
+    grid-template-columns: 20% 55% 15% 10%
+}
+
+.basketImage {
+    max-width:50px;
+    grid-column-start: 1;
+    grid-column-end: 1;
 }
 
 /*Lookbook ////////////////////////////////////////////////////////////////////////////////////*/

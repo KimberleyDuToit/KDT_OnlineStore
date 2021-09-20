@@ -58,9 +58,12 @@
                     <div class="shopPage">
                         <div class="filterBlock">
                             <h4>Sort:</h4>
-                            <button @click="sort('name')" id="sortName" type="button" class="btn btn-primary">Sort Alphabetically</button>
-                            <button @click="sort('price')" id="sortPrice" type="button" class="btn btn-primary">Sort by Price</button>
-                            <button @click="sort('type')" id="sortType" type="button" class="btn btn-primary">Sort by Type</button>
+                            <button @click="sort('name')" id="sortName" type="button" class="btn btn-primary">Sort
+                                Alphabetically</button>
+                            <button @click="sort('price')" id="sortPrice" type="button" class="btn btn-primary">Sort by
+                                Price</button>
+                            <button @click="sort('type')" id="sortType" type="button" class="btn btn-primary">Sort by
+                                Type</button>
                             <h4>Filter:</h4>
                             <select name="Type of Plant">
                                 <option value="" disabled selected hidden>Type of Plant</option>
@@ -99,7 +102,9 @@
                             <div class="shopProduct" v-for='(item, index) in sortedItems'>
                                 <image class="productImage" :src="item.image" v.model="item.image"></image>
                                 <h4 v-model="item.name">{{item.name}}</h4>
+                                <p v-model="item.price">R {{item.price}}</p>
                                 <p v-model="item.type">{{item.type}}</p>
+                                <button @click="addToBasket(item)">Add to basket</button>
                             </div>
                         </div>
                     </div>
@@ -119,9 +124,17 @@
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <ul></ul>
+                                <ul class="basketList">
+                                    <li class="basketItem" v-for='(item, index) in myBasket'>
+                                        <image class="basketImage" :src="item.image" v.model="item.image"></image>
+                                        <span>{{item.name}}</span>
+                                        <span>R {{item.price}}</span>
+                                        <button @click="deleteItem (item, index)" class="remove">&#10005</button>
+                                    </li>
+                                </ul>
                             </div>
                             <div class="modal-footer">
+                                <h4>Total: R {{total}}</h4>
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                 <a href="images/CV 2021_KDT.pdf" download>
                                     <button type="button" id="download" class="btn btn-primary">Checkout</button>
@@ -241,7 +254,7 @@
                                     featured: false,
                                     addedToBasket: false,
                                     image: 'images/stock/aglaonemakiwi.jpg',
-                                    price: '',
+                                    price: '200',
                                 },
 
                                 {
@@ -252,7 +265,7 @@
                                     featured: false,
                                     addedToBasket: false,
                                     image: 'images/stock/aglaonemaspottedstar.jpg',
-                                    price: '',
+                                    price: '100',
                                 },
 
                                 {
@@ -667,6 +680,8 @@
 
                             sortBy: 'name',
                             sortDirection: 'asc',
+
+                            total: 0,
                         },
 
                         methods: {
@@ -675,6 +690,38 @@
                                     this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
                                 }
                                 this.sortBy = s;
+                            },
+
+                            addToBasket(item) {
+                                item.addedToBasket = true;
+                                this.total = parseFloat(this.total) + parseFloat(item.price);
+                                this.myBasket.push(Object.assign({}, item));
+                                const taskArrStorage = JSON.stringify(this.myBasket);
+                                const totalStorage = JSON.stringify(this.total);
+                                localStorage.setItem("taskArrStorage", taskArrStorage);
+                                localStorage.setItem("totalStorage", totalStorage);
+                                console.log('Array Stored in Local')
+                            },
+
+                            deleteItem(item, index) {
+                                this.total = parseFloat(this.total) - parseFloat(item.price);
+                                this.myBasket.splice(index, 1);
+                                const taskArrStorage = JSON.stringify(this.myBasket);
+                                localStorage.setItem("taskArrStorage", taskArrStorage);
+                                console.log('Array Stored in Local')
+                            }
+                        },
+
+                        mounted: function (item) {
+                            let basketSaved = localStorage.getItem("taskArrStorage");
+                            let totalSaved = localStorage.getItem("totalStorage");
+                            let basketLoad = JSON.parse(basketSaved);
+                            let totalLoad = JSON.parse(totalSaved);
+                            if (basketLoad === null) {
+                                console.log('No objects in array')
+                            } else {
+                                this.myBasket.push(...basketLoad);
+                                this.total = parseFloat(totalLoad);
                             }
                         },
 
