@@ -92,6 +92,7 @@ h4 {
 
 .headerPanel {
     background-color: #1f2d2e;
+    background-image: url("hero4.jpg");
     min-height: 400px;
     background-position: center;
     background-size: cover;
@@ -103,6 +104,11 @@ h4 {
     color: white;
     margin-top:auto;
     margin-bottom:auto;
+}
+
+.featureImage {
+    max-width: 90%;
+    margin-bottom: 20px;
 }
 
 /*About page /////////////////////////////////////////////////////////////////////////////////*/
