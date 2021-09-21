@@ -23,6 +23,10 @@ html {
    vertical-align: middle;
 }
 
+.navbar-brand {
+    max-width: 120px;
+}
+
 .nav-item {
    padding-left: 20px;
    padding-right: 20px;
