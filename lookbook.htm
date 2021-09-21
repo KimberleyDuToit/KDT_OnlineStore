@@ -74,9 +74,17 @@
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <ul></ul>
+                                <ul class="basketList">
+                                    <li class="basketItem" v-for='(item, index) in myBasket'>
+                                        <image class="basketImage" :src="item.image" v.model="item.image"></image>
+                                        <span>{{item.name}}</span>
+                                        <span>R {{item.price}}</span>
+                                        <button @click="deleteItem (item, index)" class="remove">&#10005</button>
+                                    </li>
+                                </ul>
                             </div>
                             <div class="modal-footer">
+                                <h4>Total: R {{total}}</h4>
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                 <a href="images/CV 2021_KDT.pdf" download>
                                     <button type="button" id="download" class="btn btn-primary">Checkout</button>
@@ -95,219 +103,54 @@
                     integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
                     crossorigin="anonymous"></script>
 
-                <script>
-                    new Vue({
-                        el: '#vueArea',
-                        data: {
-                            product: {
-                                name: '',
-                                type: '',
-                                category: [''],
-                                new: false,
-                                featured: false,
-                                addedToBasket: false,
-                                image: '',
+                    <script>
+                        new Vue({
+                            el: '#vueArea',
+                            data: {
+                                product: {
+                                    name: '',
+                                    type: '',
+                                    category: [''],
+                                    new: false,
+                                    featured: false,
+                                    addedToBasket: false,
+                                    image: '',
+                                    price: '',
+                                },
+            
+                                myBasket: [],
+            
+                                total: 0,
                             },
-
-                            plantRange: [
-                                {
-                                    name: 'Philodendron Brasil',
-                                    type: 'Philodendron',
-                                    category: ['Trailing'],
-                                    new: false,
-                                    featured: false,
-                                    addedToBasket: false,
-                                    image: ''
-                                },
-
-                                {
-                                    name: 'Philodendron Silver',
-                                    type: 'Philodendron',
-                                    category: ['Trailing'],
-                                    new: false,
-                                    featured: false,
-                                    addedToBasket: false,
-                                    image: ''
-                                },
-
-                                {
-                                    name: 'String of Hearts',
-                                    type: 'Ceropegia',
-                                    category: ['Trailing'],
-                                    new: false,
-                                    featured: false,
-                                    addedToBasket: false,
-                                    image: ''
-                                },
-
-                                {
-                                    name: 'Mini Monstera',
-                                    type: 'Monstera',
-                                    category: ['Climbing'],
-                                    new: false,
-                                    featured: false,
-                                    addedToBasket: false,
-                                    image: ''
-                                },
-
-                                {
-                                    name: 'Monstera Deliciosa',
-                                    type: 'Monstera',
-                                    category: ['Standing', 'Large'],
-                                    new: false,
-                                    featured: false,
-                                    addedToBasket: false,
-                                    image: ''
-                                },
-
-                                {
-                                    name: 'Peace Lily',
-                                    type: 'Lily',
-                                    category: ['Standing'],
-                                    new: false,
-                                    featured: false,
-                                    addedToBasket: false,
-                                    image: ''
-                                },
-
-                                {
-                                    name: 'Calla Lily',
-                                    type: 'Lily',
-                                    category: ['Standing'],
-                                    new: false,
-                                    featured: false,
-                                    addedToBasket: false,
-                                    image: ''
-                                },
-
-                                {
-                                    name: 'Dwarf Umbrella Tree',
-                                    type: 'Tree',
-                                    category: ['Standing', 'Large'],
-                                    new: false,
-                                    featured: false,
-                                    addedToBasket: false,
-                                    image: ''
-                                },
-
-                                {
-                                    name: 'Maidenhair Fern',
-                                    type: 'Fern',
-                                    category: ['Shade-loving', 'Standing'],
-                                    new: false,
-                                    featured: false,
-                                    addedToBasket: false,
-                                    image: ''
-                                },
-
-                                {
-                                    name: 'Blue Star Fern',
-                                    type: 'Fern',
-                                    category: ['Shade-loving', 'Standing'],
-                                    new: false,
-                                    featured: false,
-                                    addedToBasket: false,
-                                    image: ''
-                                },
-
-                                {
-                                    name: 'Toothed Brake Fern',
-                                    type: 'Fern',
-                                    category: ['Shade-loving', 'Standing'],
-                                    new: false,
-                                    featured: false,
-                                    addedToBasket: false,
-                                    image: ''
-                                },
-
-                                {
-                                    name: 'Birds Nest Fern',
-                                    type: 'Fern',
-                                    category: ['Shade-loving', 'Standing'],
-                                    new: false,
-                                    featured: false,
-                                    addedToBasket: false,
-                                    image: ''
-                                },
-
-                                {
-                                    name: 'Staghorn Fern',
-                                    type: 'Fern',
-                                    category: ['Mounted'],
-                                    new: false,
-                                    featured: false,
-                                    addedToBasket: false,
-                                    image: ''
-                                },
-
-                                {
-                                    name: 'Parlour Palm',
-                                    type: 'Palm',
-                                    category: ['Standing'],
-                                    new: false,
-                                    featured: false,
-                                    addedToBasket: false,
-                                    image: ''
-                                },
-
-                                {
-                                    name: 'Oncidium Orchid',
-                                    type: 'Orchid',
-                                    category: ['Standing'],
-                                    new: false,
-                                    featured: false,
-                                    addedToBasket: false,
-                                    image: ''
-                                },
-
-                                {
-                                    name: 'Fiddle-leaf Fig',
-                                    type: 'Ficus',
-                                    category: ['Large', 'Standing'],
-                                    new: false,
-                                    featured: false,
-                                    addedToBasket: false,
-                                    image: ''
-                                },
-
-                                {
-                                    name: 'Syngonium Pixie',
-                                    type: 'Syngonium',
-                                    category: ['Small', 'Standing'],
-                                    new: false,
-                                    featured: false,
-                                    addedToBasket: false,
-                                    image: ''
-                                },
-
-                                {
-                                    name: 'Alocasia Amazonica Bambino',
-                                    type: 'Alocasia',
-                                    category: ['Standing'],
-                                    new: false,
-                                    featured: false,
-                                    addedToBasket: false,
-                                    image: ''
-                                },
-
-                                {
-                                    name: 'Chinese Money Plant',
-                                    type: 'Pilea',
-                                    category: ['Standing'],
-                                    new: false,
-                                    featured: false,
-                                    addedToBasket: false,
-                                    image: ''
-                                },
-                            ],
-
-                            myBasket: [],
-
-                            sortBy: 'name',
-                            sortDirection: 'asc',
-                        },
-                    })
-                </script>
+            
+                            methods: {
+                                        deleteItem(item, index) {
+                                            this.total = parseFloat(this.total) - parseFloat(item.price);
+                                            this.myBasket.splice(index, 1);
+                                            const taskArrStorage = JSON.stringify(this.myBasket);
+                                            const totalStorage = JSON.stringify(this.total);
+                                            localStorage.setItem("taskArrStorage", taskArrStorage);
+                                            localStorage.setItem("totalStorage", totalStorage);
+                                            console.log('Array Stored in Local')
+                                        }
+                                    },
+            
+                            mounted: function (item) {
+                                let basketSaved = localStorage.getItem("taskArrStorage");
+                                let totalSaved = localStorage.getItem("totalStorage");
+                                let basketLoad = JSON.parse(basketSaved);
+                                let totalLoad = JSON.parse(totalSaved);
+                                if (basketLoad === null) {
+                                    console.log('No objects in array')
+                                } else {
+                                    this.myBasket.push(...basketLoad);
+                                    this.total = parseFloat(totalLoad);
+                                }
+                            },
+            
+                        })
+                    </script>
+            
 
 </body>
 

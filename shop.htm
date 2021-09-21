@@ -707,7 +707,9 @@
                                 this.total = parseFloat(this.total) - parseFloat(item.price);
                                 this.myBasket.splice(index, 1);
                                 const taskArrStorage = JSON.stringify(this.myBasket);
+                                const totalStorage = JSON.stringify(this.total);
                                 localStorage.setItem("taskArrStorage", taskArrStorage);
+                                localStorage.setItem("totalStorage", totalStorage);
                                 console.log('Array Stored in Local')
                             }
                         },
