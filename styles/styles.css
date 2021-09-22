@@ -239,7 +239,7 @@ h4.teamMemberName {
     grid-template-rows: 260px 260px 260px 260px 260px 260px;
 }
 
-.look1 {
+#look1 {
     grid-column-start: 1;
     grid-column-end: 2;
     grid-row-start: 1;
@@ -250,7 +250,7 @@ h4.teamMemberName {
     border-color: #efefef;
 }
 
-.look2 {
+#look2 {
     grid-column-start: 3;
     grid-column-end: 3;
     grid-row-start: 1;
@@ -261,7 +261,7 @@ h4.teamMemberName {
     border-color: #efefef;
 }
 
-.look3 {
+#look3 {
     grid-column-start: 3;
     grid-column-end: 3;
     grid-row-start: 2;
@@ -272,7 +272,7 @@ h4.teamMemberName {
     border-color: #efefef;
 }
 
-.look4 {
+#look4 {
     grid-column-start: 1;
     grid-column-end: 1;
     grid-row-start: 3;
@@ -283,7 +283,7 @@ h4.teamMemberName {
     border-color: #efefef;
 }
 
-.look5 {
+#look5 {
     grid-column-start: 2;
     grid-column-end: 2;
     grid-row-start: 3;
@@ -294,7 +294,7 @@ h4.teamMemberName {
     border-color: #efefef;
 }
 
-.look6 {
+#look6 {
     grid-column-start: 3;
     grid-column-end: 3;
     grid-row-start: 3;
@@ -305,7 +305,7 @@ h4.teamMemberName {
     border-color: #efefef;
 }
 
-.look7 {
+#look7 {
     grid-column-start: 1;
     grid-column-end: 1;
     grid-row-start: 4;
@@ -316,7 +316,7 @@ h4.teamMemberName {
     border-color: #efefef;
 }
 
-.look8 {
+#look8 {
     grid-column-start: 2;
     grid-column-end: 2;
     grid-row-start: 4;
@@ -327,7 +327,7 @@ h4.teamMemberName {
     border-color: #efefef;
 }
 
-.look9 {
+#look9 {
     grid-column-start: 1;
     grid-column-end: 1;
     grid-row-start: 6;
@@ -338,7 +338,7 @@ h4.teamMemberName {
     border-color: #efefef;
 }
 
-.look10 {
+#look10 {
     grid-column-start: 2;
     grid-column-end: 3;
     grid-row-start: 5;
@@ -347,6 +347,31 @@ h4.teamMemberName {
     border-width: 2px;
     border-style: solid;
     border-color: #efefef;
+}
+
+.galleryPic {
+    width:100%;
+    padding-left:5%;
+    padding-right:5%;
+}
+
+.galleryModal {
+    max-height:80vh;
+    max-width:55%;
+}
+
+.carousel-control-prev {
+    width: 40px;
+}
+.carousel-control-next {
+    width: 40px;
+}
+
+.carousel-control-prev-icon {
+    filter: invert(100%)
+}
+.carousel-control-next-icon {
+    filter: invert(100%)
 }
 
 /*Link styles /////////////////////////////////////////////////////////////////////////////////*/
