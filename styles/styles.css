@@ -51,6 +51,11 @@ h1#name {
     font-size: 80px;
 }
 
+h1 {
+    color: #1d1d1d;
+    padding-top: 40px;
+}
+
 h2#title {
     font-family:'Montserrat-Thin';
     font-size:28px;
@@ -127,7 +132,14 @@ h4 {
 div#aboutCard {
     padding-left:40px;
     padding-right:40px;
-    padding-bottom: 10px;
+    padding-bottom:20px;
+    padding-top:20px;
+}
+
+#storeFront {
+    max-width: 566px;
+    margin-top: 10px;
+    border-radius: 4px;
 }
 
 .splitTeamGrid {
@@ -340,11 +352,11 @@ h4.teamMemberName {
 /*Link styles /////////////////////////////////////////////////////////////////////////////////*/
 
 a:link {
-    color: rgb(255, 255, 255);
+    color: #212529;
 }
   
 a:visited {
-    color: rgb(192, 192, 192);
+    color: #212529;
 }
   
 a:hover {
