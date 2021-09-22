@@ -223,7 +223,118 @@ h4.teamMemberName {
 /*Lookbook ////////////////////////////////////////////////////////////////////////////////////*/
 .lookGrid {
     display:grid;
-    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-columns: 33% 33% 33%;
+    grid-template-rows: 260px 260px 260px 260px 260px 260px;
+}
+
+.look1 {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end:2;
+    max-height:520px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #efefef;
+}
+
+.look2 {
+    grid-column-start: 3;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end:1;
+    max-height:260px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #efefef;
+}
+
+.look3 {
+    grid-column-start: 3;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end:2;
+    max-height:260px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #efefef;
+}
+
+.look4 {
+    grid-column-start: 1;
+    grid-column-end: 1;
+    grid-row-start: 3;
+    grid-row-end:3;
+    max-height:260px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #efefef;
+}
+
+.look5 {
+    grid-column-start: 2;
+    grid-column-end: 2;
+    grid-row-start: 3;
+    grid-row-end:3;
+    max-height:260px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #efefef;
+}
+
+.look6 {
+    grid-column-start: 3;
+    grid-column-end: 3;
+    grid-row-start: 3;
+    grid-row-end:4;
+    max-height:520px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #efefef;
+}
+
+.look7 {
+    grid-column-start: 1;
+    grid-column-end: 1;
+    grid-row-start: 4;
+    grid-row-end:5;
+    max-height:520px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #efefef;
+}
+
+.look8 {
+    grid-column-start: 2;
+    grid-column-end: 2;
+    grid-row-start: 4;
+    grid-row-end:4;
+    max-height:260px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #efefef;
+}
+
+.look9 {
+    grid-column-start: 1;
+    grid-column-end: 1;
+    grid-row-start: 6;
+    grid-row-end:6;
+    max-height:260px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #efefef;
+}
+
+.look10 {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 5;
+    grid-row-end:6;
+    max-height:520px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #efefef;
 }
 
 /*Link styles /////////////////////////////////////////////////////////////////////////////////*/
