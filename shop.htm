@@ -133,7 +133,7 @@
                             <div class="modal-body">
                                 <ul class="basketList">
                                     <li class="basketItem" v-for='(item, index) in myBasket'>
-                                        <image class="basketImage" :src="item.image" v.model="item.image"></image>
+                                        <image class="basketImage" :src="item.image" v.model="item.image" alt="{{item.name}} product"></image>
                                         <span>{{item.name}}</span>
                                         <span>R {{item.price}}</span>
                                         <button @click="deleteItem (item, index)" class="remove">&#10005</button>
