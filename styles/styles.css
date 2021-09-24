@@ -234,10 +234,15 @@ h4.teamMemberName {
 }
 
 /*Lookbook ////////////////////////////////////////////////////////////////////////////////////*/
+
 .lookGrid {
     display:grid;
     grid-template-columns: 33% 33% 33%;
     grid-template-rows: 260px 260px 260px 260px 260px 260px;
+}
+
+.lookWrap {
+    overflow: hidden;   
 }
 
 #look1 {
@@ -245,7 +250,8 @@ h4.teamMemberName {
     grid-column-end: 2;
     grid-row-start: 1;
     grid-row-end:2;
-    max-height:520px;
+    height:520px;
+    width:774px;
     border-width: 2px;
     border-style: solid;
     border-color: #efefef;
@@ -300,7 +306,7 @@ h4.teamMemberName {
     grid-column-end: 3;
     grid-row-start: 3;
     grid-row-end:4;
-    max-height:520px;
+    height:520px;
     border-width: 2px;
     border-style: solid;
     border-color: #efefef;
@@ -311,7 +317,7 @@ h4.teamMemberName {
     grid-column-end: 1;
     grid-row-start: 4;
     grid-row-end:5;
-    max-height:520px;
+    height:520px;
     border-width: 2px;
     border-style: solid;
     border-color: #efefef;
@@ -344,7 +350,8 @@ h4.teamMemberName {
     grid-column-end: 3;
     grid-row-start: 5;
     grid-row-end:6;
-    max-height:520px;
+    height:520px;
+    width:774px;
     border-width: 2px;
     border-style: solid;
     border-color: #efefef;
