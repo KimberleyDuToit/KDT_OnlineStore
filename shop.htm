@@ -84,6 +84,7 @@
                                 <option value="Sanseveria">Sanseveria</option>
                                 <option value="Syngonium">Syngonium</option>
                             </select>
+                            <h4>Include:</h4>
                             <div id="checkCategories">
                                 <input type="checkbox" id="checkTrailing" v-model="showTrailing">
                                 <label for="checkTrailing">Trailing</label>
@@ -93,23 +94,38 @@
                                 <label for="checkStanding">Standing</label>
                                 <input type="checkbox" id="checkLarge" v-model="showLarge">
                                 <label for="checkLarge">Large</label>
+                                <input type="checkbox" id="checkRegular" v-model="showRegular">
+                                <label for="checkRegular">Small/Medium</label>
                                 <input type="checkbox" id="checkWaterwise" v-model="showWaterwise">
                                 <label for="checkWaterwise">Water-wise</label>
+                                <input type="checkbox" id="checkShadeloving" v-model="showShadeloving">
+                                <label for="checkShadeloving">Shade-loving</label>
                                 <input type="checkbox" id="checkRare" v-model="showRare">
                                 <label for="checkRare">Rare</label>
+                                <input type="checkbox" id="checkUncommon" v-model="showUncommon">
+                                <label for="checkUncommon">Uncommon</label>
+                                <input type="checkbox" id="checkCommon" v-model="showCommon">
+                                <label for="checkCommon">Common</label>
                             </div>
-
 
                         </div>
                         <div class="shopGrid">
-                            <div class="shopProduct" v-for='(item, index) in sortedItems' v-if="item.type === filterType || filterType === 'All'">
-                                <div >
+                            <div class="shopProduct" v-for='(item, index) in sortedItems' v-if="(item.type === filterType || filterType === 'All')"
+                            :class="{hide: (item.category.includes('Trailing') && showTrailing === false) ||
+                            (item.category.includes('Climbing') && showClimbing === false) ||
+                            (item.category.includes('Standing') && showStanding === false) ||
+                            (item.category.includes('Large') && showLarge === false) ||
+                            (item.category.includes('Water-wise') && showWaterwise === false) ||
+                            (item.category.includes('Common') && showCommon === false) ||
+                            (item.category.includes('Rare') && showRare === false) ||
+                            (item.category.includes('Shade-loving') && showShadeloving === false) ||
+                            (item.category.includes('Regular') && showRegular === false ||
+                            (item.category.includes('Unommon') && showUncommon === false))}"> 
                                 <image class="productImage" :src="item.image" v.model="item.image" :id="item.name"></image>
                                 <h4 v-model="item.name">{{item.name}}</h4>
                                 <p v-model="item.price">R {{item.price}}</p>
                                 <p v-model="item.type">{{item.type}}</p>
                                 <button @click="addToBasket(item)">Add to basket</button>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -182,7 +198,7 @@
                                 {
                                     name: 'Philodendron Brasil',
                                     type: 'Philodendron',
-                                    category: ['Trailing'],
+                                    category: ['Trailing', 'Regular', 'Common'],
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
@@ -193,7 +209,7 @@
                                 {
                                     name: 'Philodendron Silver',
                                     type: 'Philodendron',
-                                    category: ['Trailing'],
+                                    category: ['Trailing', 'Regular', 'Common'],
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
@@ -204,7 +220,7 @@
                                 {
                                     name: 'String of Hearts',
                                     type: 'Ceropegia',
-                                    category: ['Trailing'],
+                                    category: ['Trailing', 'Uncommon', 'Regular', 'Water-wise'],
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
@@ -215,7 +231,7 @@
                                 {
                                     name: 'Monstera Adansonii',
                                     type: 'Monstera',
-                                    category: ['Climbing'],
+                                    category: ['Climbing', 'Uncommon',],
                                     new: true,
                                     featured: false,
                                     addedToBasket: false,
@@ -226,7 +242,7 @@
                                 {
                                     name: 'Monstera Deliciosa',
                                     type: 'Monstera',
-                                    category: ['Standing', 'Large'],
+                                    category: ['Standing', 'Large', 'Common'],
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
@@ -237,7 +253,7 @@
                                 {
                                     name: 'Peace Lily',
                                     type: 'Lily',
-                                    category: ['Standing'],
+                                    category: ['Standing', 'Regular', 'Common', 'Shade-loving'],
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
@@ -248,7 +264,7 @@
                                 {
                                     name: 'Dwarf Umbrella Tree',
                                     type: 'Tree',
-                                    category: ['Standing', 'Large'],
+                                    category: ['Standing', 'Large', 'Common'],
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
@@ -259,7 +275,7 @@
                                 {
                                     name: 'Aglaonema Kiwi',
                                     type: 'Aglaonema',
-                                    category: ['Standing'],
+                                    category: ['Standing', 'Regular', 'Uncommon'],
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
@@ -270,7 +286,7 @@
                                 {
                                     name: 'Aglaonema Spotted Star',
                                     type: 'Aglaonema',
-                                    category: ['Standing'],
+                                    category: ['Standing', 'Regular', 'Uncommon'],
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
@@ -281,7 +297,7 @@
                                 {
                                     name: 'Sanseveria Moonshine',
                                     type: 'Sanseveria',
-                                    category: ['Standing'],
+                                    category: ['Standing', 'Water-wise', 'Uncommon'],
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
@@ -292,7 +308,7 @@
                                 {
                                     name: 'Blue Star Fern',
                                     type: 'Fern',
-                                    category: ['Shade-loving', 'Standing'],
+                                    category: ['Shade-loving', 'Standing', 'Common', 'Regular'],
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
@@ -303,7 +319,7 @@
                                 {
                                     name: 'Toothed Brake Fern',
                                     type: 'Fern',
-                                    category: ['Shade-loving', 'Standing'],
+                                    category: ['Shade-loving', 'Standing', 'Uncommon','Regular'],
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
@@ -314,7 +330,7 @@
                                 {
                                     name: 'Stephania Erecta',
                                     type: 'Caudex',
-                                    category: ['Standing', 'Rare'],
+                                    category: ['Standing', 'Rare', 'Regular'],
                                     new: true,
                                     featured: false,
                                     addedToBasket: false,
@@ -325,7 +341,7 @@
                                 {
                                     name: 'Birds Nest Fern',
                                     type: 'Fern',
-                                    category: ['Shade-loving', 'Standing'],
+                                    category: ['Shade-loving', 'Standing', 'Regular', 'Common'],
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
@@ -336,7 +352,7 @@
                                 {
                                     name: 'ZZ Plant',
                                     type: 'Zamioculcas',
-                                    category: ['Standing'],
+                                    category: ['Standing','Large', 'Common'],
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
@@ -347,7 +363,7 @@
                                 {
                                     name: 'Alocasia Dracon Scale',
                                     type: 'Alocasia',
-                                    category: ['Standing'],
+                                    category: ['Standing', 'Rare', 'Regular'],
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
@@ -358,7 +374,7 @@
                                 {
                                     name: 'Pink Syngonium',
                                     type: 'Syngonium',
-                                    category: ['Standing'],
+                                    category: ['Standing', 'Uncommon', 'Regular'],
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
@@ -369,7 +385,7 @@
                                 {
                                     name: 'Parlour Palm',
                                     type: 'Palm',
-                                    category: ['Standing', 'Large'],
+                                    category: ['Standing', 'Large', 'Common'],
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
@@ -380,7 +396,7 @@
                                 {
                                     name: 'Ponytail Palm',
                                     type: 'Palm',
-                                    category: ['Standing'],
+                                    category: ['Standing', 'Regular', 'Common'],
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
@@ -391,7 +407,7 @@
                                 {
                                     name: 'Snake Plant',
                                     type: 'Sanseveria',
-                                    category: ['Standing', 'Large'],
+                                    category: ['Standing', 'Large', 'Common', 'Water-wise'],
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
@@ -402,7 +418,7 @@
                                 {
                                     name: 'Fiddle-leaf Fig',
                                     type: 'Ficus',
-                                    category: ['Large', 'Standing'],
+                                    category: ['Large', 'Standing', 'Common'],
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
@@ -413,7 +429,7 @@
                                 {
                                     name: 'Syngonium Pixie',
                                     type: 'Syngonium',
-                                    category: ['Small', 'Standing'],
+                                    category: ['Regular', 'Standing', 'Common'],
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
@@ -424,7 +440,7 @@
                                 {
                                     name: 'Amazonica Bambino',
                                     type: 'Alocasia',
-                                    category: ['Standing'],
+                                    category: ['Standing', 'Regular', 'Common'],
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
@@ -435,7 +451,7 @@
                                 {
                                     name: 'Ficus Tineke',
                                     type: 'Ficus',
-                                    category: ['Standing'],
+                                    category: ['Standing', 'Large', 'Common'],
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
@@ -446,7 +462,7 @@
                                 {
                                     name: 'Chinese Money Plant',
                                     type: 'Pilea',
-                                    category: ['Standing'],
+                                    category: ['Standing', 'Regular', 'Common'],
                                     new: false,
                                     featured: true,
                                     addedToBasket: false,
@@ -457,7 +473,7 @@
                                 {
                                     name: 'Polka Dot Begonia',
                                     type: 'Begonia',
-                                    category: ['Standing'],
+                                    category: ['Standing', 'Regular', 'Uncommon'],
                                     new: false,
                                     featured: true,
                                     addedToBasket: false,
@@ -468,7 +484,7 @@
                                 {
                                     name: 'Begonia Arctic Breeze',
                                     type: 'Begonia',
-                                    category: ['Standing'],
+                                    category: ['Standing', 'Regular', 'Common'],
                                     new: true,
                                     featured: false,
                                     addedToBasket: false,
@@ -479,7 +495,7 @@
                                 {
                                     name: 'Caladium Carolyn',
                                     type: 'Caladium',
-                                    category: ['Standing'],
+                                    category: ['Standing', 'Regular', 'Uncommon'],
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
@@ -490,7 +506,7 @@
                                 {
                                     name: 'Anthurium Clarinervium',
                                     type: 'Anthurium',
-                                    category: ['Standing'],
+                                    category: ['Standing', 'Large', 'Rare'],
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
@@ -501,7 +517,7 @@
                                 {
                                     name: 'White Anthurium',
                                     type: 'Anthurium',
-                                    category: ['Standing'],
+                                    category: ['Standing', 'Regular', 'Common'],
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
@@ -512,7 +528,7 @@
                                 {
                                     name: 'Calathea White Fusion',
                                     type: 'Calathea',
-                                    category: ['Standing'],
+                                    category: ['Standing', 'Regular', 'Rare'],
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
@@ -523,7 +539,7 @@
                                 {
                                     name: 'Calathea Lancifolia',
                                     type: 'Calathea',
-                                    category: ['Standing'],
+                                    category: ['Standing', 'Regular', 'Uncommon'],
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
@@ -534,7 +550,7 @@
                                 {
                                     name: 'Rubber Plant',
                                     type: 'Ficus',
-                                    category: ['Standing'],
+                                    category: ['Standing', 'Large', 'Common'],
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
@@ -545,7 +561,7 @@
                                 {
                                     name: 'Calathea Makoyana',
                                     type: 'Calathea',
-                                    category: ['Standing'],
+                                    category: ['Standing', 'Regular', 'Commmon'],
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
@@ -556,7 +572,7 @@
                                 {
                                     name: 'Calathea Orbifolia',
                                     type: 'Calathea',
-                                    category: ['Standing'],
+                                    category: ['Standing', 'Regular', 'Uncommon'],
                                     new: false,
                                     featured: true,
                                     addedToBasket: false,
@@ -578,7 +594,7 @@
                                 {
                                     name: 'Dracaena',
                                     type: 'Dracaena',
-                                    category: ['Standing'],
+                                    category: ['Standing', 'Regular', 'Common', 'Water-wise'],
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
@@ -589,7 +605,7 @@
                                 {
                                     name: 'Calathea White Star',
                                     type: 'Calathea',
-                                    category: ['Standing'],
+                                    category: ['Standing', 'Regular', 'Uncommon'],
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
@@ -600,7 +616,7 @@
                                 {
                                     name: 'Calathea Zebrina',
                                     type: 'Calathea',
-                                    category: ['Standing'],
+                                    category: ['Standing','Regular', 'Uncommon'],
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
@@ -611,7 +627,7 @@
                                 {
                                     name: 'Golden Pothos',
                                     type: 'Pothos',
-                                    category: ['Trailing'],
+                                    category: ['Trailing', 'Regular', 'Common'],
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
@@ -622,7 +638,7 @@
                                 {
                                     name: 'Mont Blanc',
                                     type: 'Succulent',
-                                    category: ['Standing'],
+                                    category: ['Standing', 'Regular', 'Uncommon', 'Water-wise'],
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
@@ -633,7 +649,7 @@
                                 {
                                     name: 'Philodendron Verrucosum',
                                     type: 'Philodendron',
-                                    category: ['Standing', 'Rare'],
+                                    category: ['Standing', 'Rare', 'Regular'],
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
@@ -644,7 +660,7 @@
                                 {
                                     name: 'Satin Pothos',
                                     type: 'Pothos',
-                                    category: ['Standing'],
+                                    category: ['Standing', 'Uncommon', 'Regular'],
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
@@ -655,7 +671,7 @@
                                 {
                                     name: 'Philodendron Birkin',
                                     type: 'Philodendron',
-                                    category: ['Standing'],
+                                    category: ['Standing', 'Uncommon', 'Regular'],
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
@@ -666,7 +682,7 @@
                                 {
                                     name: 'String of Pearls',
                                     type: 'Succulent',
-                                    category: ['Trailing'],
+                                    category: ['Trailing', 'Common', 'Regular', 'Water-wise'],
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
@@ -677,7 +693,7 @@
                                 {
                                     name: 'Aloe Tiki Zilla',
                                     type: 'Aloe',
-                                    category: ['Standing', 'Succulent'],
+                                    category: ['Standing', 'Water-wise', 'Regular', 'Common'],
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
@@ -695,8 +711,12 @@
                             showClimbing: true,
                             showStanding: true,
                             showLarge: true,
+                            showRegular: true,
                             showWaterwise: true,
+                            showShadeloving: true,
                             showRare:true,
+                            showUncommon:true,
+                            showCommon:true,
 
                             total: 0,
                         },
@@ -728,7 +748,7 @@
                                 localStorage.setItem("taskArrStorage", taskArrStorage);
                                 localStorage.setItem("totalStorage", totalStorage);
                                 console.log('Array Stored in Local')
-                            }
+                            },
                         },
 
                         mounted: function (item) {
