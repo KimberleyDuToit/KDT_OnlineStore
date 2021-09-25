@@ -68,9 +68,9 @@
                             <button @click="sort('type')" id="sortType" type="button" class="btn btn-primary">Sort by
                                 Type</button>
                             <h4>Filter:</h4>
-                            <select name="Type of Plant">
+                            <select id="filterDrop" name="Type of Plant" v-model="filterType" >
                                 <option value="" disabled selected hidden>Type of Plant</option>
-                                <option value="All types">All types</option>
+                                <option value="All">All Plant Types</option>
                                 <option value="Aglaonema">Aglaonema</option>
                                 <option value="Alocasia">Alocasia</option>
                                 <option value="Anthurium">Anthurium</option>
@@ -85,29 +85,31 @@
                                 <option value="Syngonium">Syngonium</option>
                             </select>
                             <div id="checkCategories">
-                                <input type="checkbox" id="checkTrailing">
+                                <input type="checkbox" id="checkTrailing" v-model="showTrailing">
                                 <label for="checkTrailing">Trailing</label>
-                                <input type="checkbox" id="checkClimbing">
+                                <input type="checkbox" id="checkClimbing" v-model="showClimbing">
                                 <label for="checkClimbing">Climbing</label>
-                                <input type="checkbox" id="checkStanding">
+                                <input type="checkbox" id="checkStanding" v-model="showStanding">
                                 <label for="checkStanding">Standing</label>
-                                <input type="checkbox" id="checkLarge">
+                                <input type="checkbox" id="checkLarge" v-model="showLarge">
                                 <label for="checkLarge">Large</label>
-                                <input type="checkbox" id="checkWaterwise">
+                                <input type="checkbox" id="checkWaterwise" v-model="showWaterwise">
                                 <label for="checkWaterwise">Water-wise</label>
-                                <input type="checkbox" id="checkRare">
+                                <input type="checkbox" id="checkRare" v-model="showRare">
                                 <label for="checkRare">Rare</label>
                             </div>
 
 
                         </div>
                         <div class="shopGrid">
-                            <div class="shopProduct" v-for='(item, index) in sortedItems'>
+                            <div class="shopProduct" v-for='(item, index) in sortedItems' v-if="item.type === filterType || filterType === 'All'">
+                                <div >
                                 <image class="productImage" :src="item.image" v.model="item.image" :id="item.name"></image>
                                 <h4 v-model="item.name">{{item.name}}</h4>
                                 <p v-model="item.price">R {{item.price}}</p>
                                 <p v-model="item.type">{{item.type}}</p>
                                 <button @click="addToBasket(item)">Add to basket</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -688,6 +690,13 @@
 
                             sortBy: 'name',
                             sortDirection: 'asc',
+                            filterType: 'All',
+                            showTrailing: true,
+                            showClimbing: true,
+                            showStanding: true,
+                            showLarge: true,
+                            showWaterwise: true,
+                            showRare:true,
 
                             total: 0,
                         },
