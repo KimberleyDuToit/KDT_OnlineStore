@@ -10,6 +10,10 @@ button.btn:hover{
     animation: grow 0.5s;
 }
 
+.addButton:active {
+    background-color: #7fdb55;
+}
+
 @keyFrames grow {
     0%{transform:scale(1,1); backface-visibility: hidden;}
     100%{transform:scale(1.05,1.05); backface-visibility: hidden;}
