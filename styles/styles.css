@@ -81,6 +81,7 @@ h4 {
     display:inline-flex;
     flex-wrap:wrap;
     width:100%;
+    max-width: 1170px;
 }
 
 .split1 {
@@ -143,17 +144,23 @@ div#aboutCard {
     padding-right:40px;
     padding-bottom:20px;
     padding-top:20px;
+    max-width: 566px;
 }
 
 #storeFront {
     max-width: 566px;
     margin-top: 10px;
+    margin-right: 20px;
     border-radius: 3px;
 }
 
 .splitTeamGrid {
     display:grid;
     grid-template-columns: 33% 33% 33%;
+}
+
+.splitTeam {
+    margin-right:20px;
 }
 
 .teamPic {
@@ -337,16 +344,16 @@ h4.teamMemberName {
 }
 
 .lookWrap {
-    overflow: hidden;   
+    overflow: hidden;
 }
 
 #look1 {
     grid-column-start: 1;
-    grid-column-end: 2;
+    grid-column-end: 3;
     grid-row-start: 1;
     grid-row-end:2;
     height:520px;
-    width:774px;
+    max-width:774px;
     border-width: 2px;
     border-style: solid;
     border-color: #efefef;
@@ -442,11 +449,11 @@ h4.teamMemberName {
 
 #look10 {
     grid-column-start: 2;
-    grid-column-end: 3;
+    grid-column-end: 4;
     grid-row-start: 5;
     grid-row-end:6;
     height:520px;
-    width:774px;
+    max-width:774px;
     border-width: 2px;
     border-style: solid;
     border-color: #efefef;
@@ -460,7 +467,7 @@ h4.teamMemberName {
 
 .galleryModal {
     max-height:80vh;
-    max-width:55%;
+    max-width:1034px;
 }
 
 .galleryCaption {
@@ -527,3 +534,418 @@ a#backtotop:hover {
     margin-right:20px;
 }
 
+/*Media Queries /////////////////////////////////////////////////////////////////////////*/
+@media only screen and (max-width:1209px) {
+    .shopGrid {
+        flex:1; 
+        float:inline-end;
+        width: 80%;
+        display:grid;
+        grid-template-columns: 33% 33% 33%;
+    }
+
+    .filterBlock {
+        min-width: 200px;
+    }
+}
+
+@media only screen and (max-width:1169px) {
+    .splitPage {
+        display:block;
+        width:100%;
+        max-width: 1170px;
+        margin-left: 15px;
+    }
+
+    .headerPanel {
+        background-color: #1f2d2e;
+        background-image: url("hero_small.jpg");
+        min-height: 400px;
+        background-position: center;
+        background-size: cover;
+    }
+
+    footer {
+        max-width: 1170px;
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+}
+
+@media only screen and (max-width:992px) {
+    #basket {
+        vertical-align: middle;
+        margin-left: 40%;
+        margin-right:45%;
+    }
+}
+
+@media only screen and (max-width:889px) {
+    .shopGrid {
+        flex:1; 
+        float:inline-end;
+        width: 80%;
+        display:grid;
+        grid-template-columns: 50% 50%;
+    }
+    
+.galleryPic {
+    width:100%;
+    padding-left:1%;
+    padding-right:1%;
+}
+
+.galleryModal {
+    max-height:80vh;
+    max-width:1034px;
+}
+
+.galleryCaption {
+    padding-left:5%;
+    padding-right:5%;
+    margin-top: 15px;
+}
+}
+
+@media only screen and (max-width: 699px){
+    .lookGrid {
+        display:grid;
+        grid-template-columns: 50% 50%;
+        grid-template-rows: 260px 260px 260px 260px 260px 260px;
+    }
+
+    .lookGrid > * {
+    grid-column: span 1;
+    grid-row: span 1;
+    } 
+
+    #look1 {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 1;
+        grid-row-end:2;
+        max-width:774px;
+        border-width: 2px;
+        border-style: solid;
+        border-color: #efefef;
+    }
+    
+    #look2 {
+        grid-column-start: 1;
+        grid-column-end: 1;
+        grid-row-start: 3;
+        grid-row-end:3;
+        max-height:260px;
+        border-width: 2px;
+        border-style: solid;
+        border-color: #efefef;
+    }
+    
+    #look3 {
+        grid-column-start: 2;
+        grid-column-end: 2;
+        grid-row-start: 3;
+        grid-row-end:3;
+        max-height:260px;
+        border-width: 2px;
+        border-style: solid;
+        border-color: #efefef;
+    }
+    
+    #look4 {
+        grid-column-start: 1;
+        grid-column-end: 1;
+        grid-row-start: 4;
+        grid-row-end:4;
+        max-height:260px;
+        border-width: 2px;
+        border-style: solid;
+        border-color: #efefef;
+    }
+    
+    #look5 {
+        grid-column-start: 2;
+        grid-column-end: 2;
+        grid-row-start: 4;
+        grid-row-end:4;
+        max-height:260px;
+        border-width: 2px;
+        border-style: solid;
+        border-color: #efefef;
+    }
+    
+    #look6 {
+        grid-column-start: 1;
+        grid-column-end: 1;
+        grid-row-start: 5;
+        grid-row-end:6;
+        height:520px;
+        border-width: 2px;
+        border-style: solid;
+        border-color: #efefef;
+    }
+    
+    #look7 {
+        grid-column-start: 2;
+        grid-column-end: 2;
+        grid-row-start: 5;
+        grid-row-end:6;
+        height:520px;
+        border-width: 2px;
+        border-style: solid;
+        border-color: #efefef;
+    }
+    
+    #look8 {
+        grid-column-start: 1;
+        grid-column-end: 1;
+        grid-row-start: 7;
+        grid-row-end:7;
+        max-height:260px;
+        border-width: 2px;
+        border-style: solid;
+        border-color: #efefef;
+    }
+    
+    #look9 {
+        grid-column-start: 2;
+        grid-column-end: 2;
+        grid-row-start: 7;
+        grid-row-end:7;
+        max-height:260px;
+        border-width: 2px;
+        border-style: solid;
+        border-color: #efefef;
+    }
+    
+    #look10 {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 8;
+        grid-row-end:9;
+        height:520px;
+        max-width:774px;
+        border-width: 2px;
+        border-style: solid;
+        border-color: #efefef;
+    }
+
+    div#aboutCard {
+        padding-left:40px;
+        padding-right:40px;
+        padding-bottom:20px;
+        padding-top:20px;
+        max-width: 566px;
+        margin-right:0px;
+    }
+    
+    #storeFront {
+        max-width: 100%;
+        margin-top: 10px;
+        margin-right: 0px;
+        border-radius: 3px;
+    }
+    
+    .splitTeamGrid {
+        margin-right: 0px;
+        display:grid;
+        grid-template-columns: 50% 50%;
+    }
+
+    .splitPage {
+        max-width: 90%;
+    }
+
+    .split2 {
+        margin-right: 0px;
+    }
+
+    .split1 {
+        margin-right: 0px;
+    }
+}
+
+@media only screen and (max-width:669px) {
+    .shopGrid {
+        flex:1; 
+        float:inline-end;
+        width: 80%;
+        display:grid;
+        grid-template-columns: 50% 50%;
+        grid-column-gap: 15%;
+    }
+
+    .filterBlock {
+        min-width: 200px;
+        max-width: 460px;
+        flex: none;
+        float: none;
+        display: grid;
+        grid-template-columns: 50% 50%;
+        margin-right: 0px;
+        margin-bottom:20px;
+        grid-column-gap: 5%;
+    }
+
+    .filterBlock > button {
+        grid-column-start: 1;
+        grid-column-end: 1;
+    }
+
+    .filterBlock > select {
+        grid-column-start: 1;
+        grid-column-end: 1;
+    }
+
+    #filter {
+        grid-column-start: 1;
+        grid-column-end: 1;
+    }
+    #sortName {
+        max-height: 62px;
+    }
+
+    #sort {
+        grid-row-start:1;
+    }
+
+    #include {
+        grid-row-start:1;
+    }
+
+    #checkCategories {
+        grid-column-start: 2;
+        grid-column-end: 2;
+        grid-row-start: 2;
+        grid-row-end: 6;
+        font-size: 18px;;
+    }
+    #checkCategories > div {
+        margin-bottom: 5px;
+    }
+
+    .shopPage {
+        display:block;
+    }
+
+    .mapouter {
+        position: relative;
+        text-align: right;
+        height: 400px;
+        width: 100%;
+        margin-right:0px;
+    }
+    
+    .gmap_canvas {
+        overflow: hidden;
+        background: none;
+        height: 400px;
+        width: 90%;
+        margin-right:0px;
+    }
+    
+    .formLine {
+        margin-bottom: 20px;
+        display: grid;
+        grid-template-columns: 25% 60%;
+}
+}
+
+    
+
+@media only screen and (max-width: 549px){
+    .headerPanel {
+        background-color: #1f2d2e;
+        background-image: url("hero_mobile.jpg");
+        min-height: 400px;
+        background-position: center;
+        background-size: cover;
+    }
+
+    #basket {
+        vertical-align: middle;
+        margin-left: 30%;
+        margin-right:45%;
+    }
+
+    .splitProductGrid {
+        display:grid;
+        grid-template-columns: 49% 49%;
+        grid-column-gap: 2%;
+        margin-right: none;
+    }
+    
+    .splitProduct > *{
+        margin-right: none;
+        width: 100%;
+    }
+    
+    .splitProduct > p {
+        max-width:174px;
+    } 
+
+    .lookGrid {
+        display:grid;
+        grid-template-columns: 50% 50%;
+        grid-template-rows: 195px 195px 195px 195px 195px 195px 195px;
+    }
+
+    #look10 {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 8;
+        grid-row-end:9;
+        height:390px;
+        border-width: 2px;
+        border-style: solid;
+        border-color: #efefef;
+    }
+}
+
+@media only screen and (max-width: 549px){
+    .splitProductGrid {
+        display:grid;
+        grid-template-columns: 100%;
+    }
+
+    .splitProduct{
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    #basket {
+        vertical-align: middle;
+        margin-left: 20%;
+        margin-right:45%;
+    }
+}
+
+@media only screen and (max-width: 459px){
+.shopGrid {
+    flex:1; 
+    float:inline-end;
+    width: 100%;
+    display:grid;
+    grid-template-columns: 45% 45%;
+    grid-column-gap: 7%;
+    margin-right: none;
+    padding: 20px;
+}
+
+.productImage {
+    max-width: 160px;
+}
+
+.filterBlock {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+#filterDrop {
+    font-size: 14px;
+}
+
+#checkCategories {
+    grid-row-end: 7;
+}
+}

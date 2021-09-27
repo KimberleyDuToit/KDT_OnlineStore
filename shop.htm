@@ -57,18 +57,18 @@
 
             <!--Section Content-->
 
-            <div class="content col-xl-8 p-5 mx-auto">
+            <div class="content py-5 px-lg-5 mx-auto">
                 <section>
                     <div class="shopPage">
                         <div class="filterBlock">
-                            <h4>Sort:</h4>
+                            <h4 id="sort">Sort:</h4>
                             <button @click="sort('name')" id="sortName" type="button" class="btn btn-primary">Sort
                                 Alphabetically</button>
                             <button @click="sort('type')" id="sortType" type="button" class="btn btn-primary">Sort by
                                 Type</button>
                             <button @click="sort('price')" id="sortPrice" type="button" class="btn btn-primary">Sort by
                                 Price</button>
-                            <h4>Filter:</h4>
+                            <h4 id="filter">Filter:</h4>
                             <select id="filterDrop" name="Type of Plant" v-model="filterType">
                                 <option value="" disabled selected hidden>Type of Plant</option>
                                 <option value="All">All Plant Types</option>
@@ -85,7 +85,7 @@
                                 <option value="Sanseveria">Sanseveria</option>
                                 <option value="Syngonium">Syngonium</option>
                             </select>
-                            <h4>Include:</h4>
+                            <h4 id="include">Include:</h4>
                             <div id="checkCategories">
                                 <div><input type="checkbox" id="checkTrailing" v-model="showTrailing">
                                     <label for="checkTrailing">Trailing</label>
