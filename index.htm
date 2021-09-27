@@ -139,7 +139,7 @@
                     <h5 class="modal-title">My Basket</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <p>{{myBasket.length}} items</p>
+                <p id="basketLength">Items: {{myBasket.length}}</p>
                 <div class="modal-body">
                     <ul class="basketList">
                         <li class="basketItem" v-for='(item, index) in myBasket'>
@@ -151,10 +151,9 @@
                     </ul>
                 </div>
                 <div class="modal-footer">
-                    <h4>Total: R {{total}}</h4>
+                    <h4 id="basketTotal">Total: R {{total}}</h4>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <a href="images/CV 2021_KDT.pdf" download>
-                        <button type="button" id="download" class="btn btn-primary">Checkout</button>
+                        <button type="button" id="checkout" class="btn btn-primary">Checkout</button>
                     </a>
                 </div>
             </div>

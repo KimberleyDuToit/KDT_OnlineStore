@@ -81,7 +81,7 @@ h4 {
     display:inline-flex;
     flex-wrap:wrap;
     width:100%;
-    max-width: 1170px;
+    width: 1170px;
 }
 
 .split1 {
@@ -333,6 +333,24 @@ h4.teamMemberName {
     max-width:50px;
     grid-column-start: 1;
     grid-column-end: 1;
+}
+
+#basketTotal {
+    margin-right: 100px;
+}
+
+#basketLength {
+    margin-bottom: 0px;
+}
+
+#checkout {
+    background-color: #009a67;
+    border-style: none;
+}
+
+.remove {
+    border-radius: 4px; 
+    border-width:1px;
 }
 
 /*Lookbook ////////////////////////////////////////////////////////////////////////////////////*/
@@ -832,7 +850,7 @@ a#backtotop:hover {
         position: relative;
         text-align: right;
         height: 400px;
-        width: 100%;
+        width: 300px;
         margin-right:0px;
     }
     
@@ -840,7 +858,7 @@ a#backtotop:hover {
         overflow: hidden;
         background: none;
         height: 400px;
-        width: 90%;
+        width: 300px;
         margin-right:0px;
     }
     
@@ -899,6 +917,14 @@ a#backtotop:hover {
         border-width: 2px;
         border-style: solid;
         border-color: #efefef;
+    }
+
+    #look1 {
+        height:390px;
+    }
+
+    .lookPic {
+        max-height:100%;
     }
 }
 
