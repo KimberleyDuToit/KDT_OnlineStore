@@ -53,11 +53,11 @@
         </header>
 
         <!--Main Info-->
-        <div class="mainarea container-fluid" style="display:flex">
+        <div class="mainarea container-fluid" >
 
             <!--Section Content-->
 
-            <div class="content py-5 px-lg-5 mx-auto">
+            <div class="content py-5 col-xl-8 px-xl-5 px-lg-5 px-md-5 px-sm-3 mx-auto" id="shopContent">
                 <section>
                     <div class="shopPage">
                         <div class="filterBlock">
@@ -122,7 +122,7 @@
                         </div>
                         <div class="shopGrid">
                             <div class="shopProduct" v-for='(item, index) in sortedItems'
-                                v-if="(item.type === filterType || filterType === 'All')" :class="{hide: (item.category.includes('Trailing') && showTrailing === false) ||
+                                v-if="(item.type === filterType || filterType === 'All')" :class="{shopProduct, hide: (item.category.includes('Trailing') && showTrailing === false) ||
                             (item.category.includes('Climbing') && showClimbing === false) ||
                             (item.category.includes('Standing') && showStanding === false) ||
                             (item.category.includes('Large') && showLarge === false) ||
@@ -131,7 +131,7 @@
                             (item.category.includes('Rare') && showRare === false) ||
                             (item.category.includes('Shade-loving') && showShadeloving === false) ||
                             (item.category.includes('Regular') && showRegular === false ||
-                            (item.category.includes('Unommon') && showUncommon === false))}">
+                            (item.category.includes('Uncommon') && showUncommon === false))}">
                                 <image class="productImage" :src="item.image" v.model="item.image" :id="item.name">
                                 </image>
                                 <h4 v-model="item.name">{{item.name}}</h4>

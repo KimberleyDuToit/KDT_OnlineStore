@@ -200,6 +200,10 @@ h4.teamMemberName {
 }
 
 /*Shop page /////////////////////////////////////////////////////////////////////////////////*/
+#shopContent {
+    width: 80%;
+}
+
 .shopPage {
     display:inline-flex;
     flex-wrap: wrap;
@@ -219,6 +223,7 @@ h4.teamMemberName {
     border-style: solid;
     border-color: #DFDFDF;
     height:fit-content;
+    min-width: 200px;
 }
 
 .filterBlock > .btn {
@@ -553,7 +558,16 @@ a#backtotop:hover {
 }
 
 /*Media Queries /////////////////////////////////////////////////////////////////////////*/
+@media only screen and (max-width:1509px) {
+    #shopContent {
+        width: 100%;
+    }
+}
+
+    
+
 @media only screen and (max-width:1209px) {
+    
     .shopGrid {
         flex:1; 
         float:inline-end;
@@ -591,21 +605,19 @@ a#backtotop:hover {
 }
 
 @media only screen and (max-width:992px) {
-    #basket {
-        vertical-align: middle;
-        margin-left: 40%;
-        margin-right:45%;
-    }
-}
-
-@media only screen and (max-width:889px) {
     .shopGrid {
         flex:1; 
         float:inline-end;
         width: 80%;
         display:grid;
-        grid-template-columns: 50% 50%;
+        grid-template-columns: 45% 45%;
     }
+     #basket {
+        vertical-align: middle;
+    }
+}
+
+@media only screen and (max-width:889px) {
     
 .galleryPic {
     width:100%;
@@ -624,6 +636,71 @@ a#backtotop:hover {
     margin-top: 15px;
 }
 }
+
+@media only screen and (max-width:735px) {
+    .shopGrid {
+        flex:1; 
+        float:inline-end;
+        width: 80%;
+        display:grid;
+        grid-template-columns: 50% 50%;
+        grid-column-gap: 15%;
+    }
+    
+    .filterBlock {
+        min-width: 200px;
+        max-width: 460px;
+        flex: none;
+        float: none;
+        display: grid;
+        grid-template-columns: 50% 50%;
+        margin-right: 0px;
+        margin-bottom:20px;
+        grid-column-gap: 5%;
+    }
+    
+    .filterBlock > button {
+        grid-column-start: 1;
+        grid-column-end: 1;
+    }
+    
+    .filterBlock > select {
+        grid-column-start: 1;
+        grid-column-end: 1;
+    }
+    
+    #filter {
+        grid-column-start: 1;
+        grid-column-end: 1;
+    }
+    #sortName {
+        max-height: 62px;
+    }
+    
+    #sort {
+        grid-row-start:1;
+    }
+    
+    #include {
+        grid-row-start:1;
+    }
+    
+    #checkCategories {
+        grid-column-start: 2;
+        grid-column-end: 2;
+        grid-row-start: 2;
+        grid-row-end: 6;
+        font-size: 18px;;
+    }
+    #checkCategories > div {
+        margin-bottom: 5px;
+    }
+    
+    .shopPage {
+        display:block;
+    }
+    }
+    
 
 @media only screen and (max-width: 699px){
     .lookGrid {
@@ -783,69 +860,9 @@ a#backtotop:hover {
     }
 }
 
+
 @media only screen and (max-width:669px) {
-    .shopGrid {
-        flex:1; 
-        float:inline-end;
-        width: 80%;
-        display:grid;
-        grid-template-columns: 50% 50%;
-        grid-column-gap: 15%;
-    }
-
-    .filterBlock {
-        min-width: 200px;
-        max-width: 460px;
-        flex: none;
-        float: none;
-        display: grid;
-        grid-template-columns: 50% 50%;
-        margin-right: 0px;
-        margin-bottom:20px;
-        grid-column-gap: 5%;
-    }
-
-    .filterBlock > button {
-        grid-column-start: 1;
-        grid-column-end: 1;
-    }
-
-    .filterBlock > select {
-        grid-column-start: 1;
-        grid-column-end: 1;
-    }
-
-    #filter {
-        grid-column-start: 1;
-        grid-column-end: 1;
-    }
-    #sortName {
-        max-height: 62px;
-    }
-
-    #sort {
-        grid-row-start:1;
-    }
-
-    #include {
-        grid-row-start:1;
-    }
-
-    #checkCategories {
-        grid-column-start: 2;
-        grid-column-end: 2;
-        grid-row-start: 2;
-        grid-row-end: 6;
-        font-size: 18px;;
-    }
-    #checkCategories > div {
-        margin-bottom: 5px;
-    }
-
-    .shopPage {
-        display:block;
-    }
-
+    
     .mapouter {
         position: relative;
         text-align: right;
