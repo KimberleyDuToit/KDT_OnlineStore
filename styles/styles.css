@@ -271,6 +271,13 @@ h4.teamMemberName {
 .shopProduct {
     grid-column: span 1;
     grid-row: span 1;
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    background-color: #ffffff;
+    border: 1px solid #dfdfdf;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(29, 29, 29, 0.08);
 }
 
 .shopProduct > h4 {
@@ -294,10 +301,55 @@ h4.teamMemberName {
 }
 
 .addButton {
-    margin-top: 5px;
-    margin-bottom: 25px;
-    border-radius: 4px; 
-    border-width:1px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    min-height: 44px;
+    margin-top: auto;
+    margin-bottom: 0;
+    padding: 10px 14px;
+    border: 1px solid #c2410c;
+    border-radius: 4px;
+    background-color: #c2410c;
+    color: #ffffff;
+    font: inherit;
+    font-weight: 600;
+    line-height: 1.2;
+    cursor: pointer;
+}
+
+.addButton:hover {
+    border-color: #9a3412;
+    background-color: #9a3412;
+}
+
+.addButton:focus-visible {
+    outline: 3px solid #1d1d1d;
+    outline-offset: 2px;
+}
+
+.addButton:active {
+    border-color: #7c2d12;
+    background-color: #7c2d12;
+}
+
+.addButton:disabled {
+    border-color: #8d8d8d;
+    background-color: #8d8d8d;
+    cursor: not-allowed;
+}
+
+.cartIcon {
+    flex: 0 0 auto;
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
 }
 
 .hide {
@@ -308,7 +360,7 @@ h4.teamMemberName {
     width: 180px;
     background-color: #009a67;
     border-style: none;
-    padding: 5px;
+    padding: 8px 14px;
     vertical-align: middle;
 }
 
@@ -991,4 +1043,499 @@ a#backtotop:hover {
 #checkCategories {
     grid-row-end: 7;
 }
+}
+
+/* Responsive layout refinements */
+:root {
+    --page-gutter: clamp(1rem, 4vw, 2.5rem);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+.fullpage,
+.mainarea,
+.content,
+section {
+    min-width: 0;
+}
+
+.mainarea {
+    display: block;
+}
+
+.content {
+    width: 100%;
+    max-width: 1200px;
+    padding-inline: var(--page-gutter) !important;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.navbar {
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    padding: 0.75rem var(--page-gutter) !important;
+}
+
+.navbar-brand {
+    display: block;
+    width: clamp(90px, 14vw, 120px);
+    max-width: 100%;
+    height: auto;
+}
+
+.navbar-nav .nav-item {
+    padding-inline: clamp(0.5rem, 1.3vw, 1.25rem);
+}
+
+#navbarSupportedContent {
+    flex: 1 0 100%;
+    min-width: 0;
+}
+
+#navbarSupportedContent > div {
+    margin-top: 0.75rem;
+}
+
+#basket {
+    width: 100%;
+    max-width: 180px;
+    margin: 0;
+}
+
+header > .headerText {
+    width: 100%;
+    max-width: 1200px;
+    margin-inline: auto !important;
+    padding-inline: var(--page-gutter) !important;
+}
+
+.headerPanel {
+    min-height: clamp(260px, 42vw, 400px);
+}
+
+h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    padding-top: clamp(1rem, 4vw, 2.5rem);
+    overflow-wrap: anywhere;
+}
+
+h1#name {
+    font-size: clamp(2.5rem, 8vw, 5rem);
+}
+
+.splitPage {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(1rem, 3vw, 2rem);
+    width: 100%;
+    max-width: 1170px;
+    margin: 0 auto;
+}
+
+.split1,
+.split2 {
+    min-width: 0;
+    float: none;
+}
+
+.splitProductGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.splitProduct {
+    min-width: 0;
+}
+
+.featureImage {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+}
+
+#aboutCard {
+    width: 100%;
+    max-width: 566px;
+    margin-right: 0;
+    padding: clamp(1rem, 3vw, 2.5rem);
+}
+
+#storeFront {
+    display: block;
+    width: 100%;
+    max-width: 566px;
+    height: auto;
+    margin-right: 0;
+}
+
+.splitTeamGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.splitTeam {
+    min-width: 0;
+    margin-right: 0;
+}
+
+.teamPic {
+    width: min(100%, 170px);
+    max-width: 100%;
+    height: auto;
+}
+
+#shopContent {
+    width: 100%;
+}
+
+.shopPage {
+    display: grid;
+    grid-template-columns: minmax(200px, 250px) minmax(0, 1fr);
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.filterBlock {
+    float: none;
+    width: auto;
+    max-width: none;
+    min-width: 0;
+    margin: 0;
+}
+
+.shopGrid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem 1rem;
+    width: 100%;
+    min-width: 0;
+    padding: 0;
+}
+
+.shopProduct {
+    min-width: 0;
+}
+
+.productImage {
+    width: 100%;
+    max-width: 210px;
+    aspect-ratio: 1;
+    object-fit: cover;
+}
+
+.lookGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: none;
+    grid-auto-rows: clamp(150px, 20vw, 260px);
+    width: 100%;
+}
+
+.lookGrid > * {
+    min-width: 0;
+    min-height: 0;
+}
+
+#look1,
+#look2,
+#look3,
+#look4,
+#look5,
+#look6,
+#look7,
+#look8,
+#look9,
+#look10 {
+    height: auto;
+    max-height: none;
+    max-width: none;
+}
+
+#look1 {
+    grid-column: 1 / span 2;
+    grid-row: 1 / span 2;
+}
+
+#look2 {
+    grid-column: 3;
+    grid-row: 1;
+}
+
+#look3 {
+    grid-column: 3;
+    grid-row: 2;
+}
+
+#look4 {
+    grid-column: 1;
+    grid-row: 3;
+}
+
+#look5 {
+    grid-column: 2;
+    grid-row: 3;
+}
+
+#look6 {
+    grid-column: 3;
+    grid-row: 3 / span 2;
+}
+
+#look7 {
+    grid-column: 1;
+    grid-row: 4 / span 2;
+}
+
+#look8 {
+    grid-column: 2;
+    grid-row: 4;
+}
+
+#look9 {
+    grid-column: 1;
+    grid-row: 6;
+}
+
+#look10 {
+    grid-column: 2 / span 2;
+    grid-row: 5 / span 2;
+}
+
+.lookPic {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-height: none;
+    object-fit: cover;
+}
+
+.mapouter,
+.gmap_canvas {
+    width: 100%;
+    max-width: 100%;
+}
+
+.mapouter,
+.gmap_canvas,
+#gmap_canvas {
+    height: 400px;
+}
+
+#gmap_canvas {
+    display: block;
+    width: 100% !important;
+    max-width: 100%;
+}
+
+.formLine {
+    grid-template-columns: minmax(7rem, 1fr) minmax(0, 2fr);
+    gap: 0.5rem 1rem;
+    align-items: start;
+}
+
+.formLine input,
+.formLine textarea {
+    width: 100%;
+    min-width: 0;
+}
+
+.basketItem {
+    grid-template-columns: 50px minmax(0, 1fr) auto auto;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.basketItem > span {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+#basketTotal {
+    margin-right: auto;
+    text-align: left;
+}
+
+.galleryModal {
+    width: calc(100% - 1rem);
+    max-width: 1034px;
+    margin: 0.5rem auto;
+}
+
+.galleryPic {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    max-height: 70vh;
+    object-fit: contain;
+}
+
+.galleryCaption {
+    padding-inline: 1rem;
+}
+
+footer {
+    width: 100%;
+    max-width: none;
+    margin-inline: 0;
+}
+
+@media (min-width: 992px) {
+    .navbar {
+        flex-wrap: nowrap;
+    }
+
+    #navbarSupportedContent {
+        flex: 1 1 auto;
+    }
+
+    #navbarSupportedContent > div {
+        margin-top: 0;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .splitPage {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .shopPage {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .filterBlock {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0 1rem;
+    }
+
+    .filterBlock > h4 {
+        flex-basis: 100%;
+    }
+
+    .filterBlock > .btn {
+        flex: 1 1 180px;
+        width: auto;
+    }
+
+    #filterDrop {
+        flex: 1 1 100%;
+        width: auto;
+    }
+
+    #checkCategories {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem 1rem;
+        width: 100%;
+    }
+
+    #checkCategories > div {
+        flex: 0 1 auto;
+        margin: 0;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .splitProductGrid,
+    .splitTeamGrid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .shopGrid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .lookGrid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-auto-rows: clamp(130px, 40vw, 220px);
+    }
+
+    #look1 {
+        grid-column: 1 / span 2;
+        grid-row: 1 / span 2;
+    }
+
+    #look2 {
+        grid-column: 1;
+        grid-row: 3;
+    }
+
+    #look3 {
+        grid-column: 2;
+        grid-row: 3;
+    }
+
+    #look4 {
+        grid-column: 1;
+        grid-row: 4;
+    }
+
+    #look5 {
+        grid-column: 2;
+        grid-row: 4;
+    }
+
+    #look6 {
+        grid-column: 1;
+        grid-row: 5 / span 2;
+    }
+
+    #look7 {
+        grid-column: 2;
+        grid-row: 5 / span 2;
+    }
+
+    #look8 {
+        grid-column: 1;
+        grid-row: 7;
+    }
+
+    #look9 {
+        grid-column: 2;
+        grid-row: 7;
+    }
+
+    #look10 {
+        grid-column: 1 / span 2;
+        grid-row: 8 / span 2;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .navbar {
+        padding: 0.5rem 1rem !important;
+    }
+
+    .splitProductGrid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .splitTeamGrid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .lookGrid {
+        grid-auto-rows: clamp(125px, 45vw, 190px);
+    }
+
+    .formLine {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 0.25rem;
+    }
+
+    .filterBlock {
+        padding: 1rem;
+    }
+
+    .basketItem {
+        grid-template-columns: 40px minmax(0, 1fr) auto auto;
+        gap: 0.35rem;
+    }
 }

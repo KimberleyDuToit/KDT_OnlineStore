@@ -23,7 +23,7 @@
             <a href="index.htm">
             <image class="navbar-brand" src="images/Asset 1.png" href="#"></image>
             </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -35,12 +35,12 @@
                     <li class="nav-item"><a class="nav-link" href="about.htm">ABOUT</a></li>
                     <li class="nav-item"><a class="nav-link" href="contact.htm">CONTACT</a></li>
                 </ul>
-                <!--Button for Basket-->
+                <!--Button for Cart-->
                 <div>
                     <button id="basket" type="button" class="btn btn-primary  my-xl-0 my-lg-0 my-md-3 my-sm-3 my-xs-3"
                         data-bs-toggle="modal" data-bs-target="#basketLink">
                         <div id="basketCounter"><span id="counterText"></span>{{myBasket.length}}</span></div>
-                        View Basket
+                        View Cart
                     </button>
                 </div>
             </div>
@@ -53,7 +53,7 @@
         </header>
 
         <!--Main Info-->
-        <div class="mainarea container-fluid" style="display:flex">
+        <div class="mainarea container-fluid">
 
             <!--Section Content-->
 
@@ -114,12 +114,12 @@
                     <a id="backtotop" href="#top">Back to the top of page</a>
                 </footer>
 
-                <!--Basket-->
+                <!--Cart-->
                 <div class="modal fade" id="basketLink" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title">My Basket</h5>
+                                <h5 class="modal-title">My Cart</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <p id="basketLength">Items: {{myBasket.length}}</p>
@@ -135,7 +135,7 @@
                             </div>
                             <div class="modal-footer">
                                 <h4 id="basketTotal">Total: R {{total}}</h4>
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
                                     <button type="button" id="checkout" class="btn btn-primary">Checkout</button>
                                 </a>
                             </div>
