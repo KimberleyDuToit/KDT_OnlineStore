@@ -20,7 +20,7 @@
         <a name="top"></a>
         <!--Sticky nav-->
         <nav class="navbar navbar-expand-lg navbar-dark sticky-top px-5 lhn">
-            <a href="index.htm">
+            <a href="index.htm" aria-current="page" aria-label="Frond home">
                 <image class="navbar-brand" src="images/Asset 1.png" href="#"></image>
                 </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -40,8 +40,13 @@
                     <button id="basket" type="button"
                         class="btn btn-primary  my-xl-0 my-lg-0 my-md-3 my-sm-3 my-xs-3" data-bs-toggle="modal"
                         data-bs-target="#basketLink">
-                        <div id="basketCounter"><span id="counterText"></span>{{myBasket.length}}</span></div>
-                        View Cart
+                        <svg class="cartIcon cartButtonIcon" aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+                            <path d="M3 4h2l2.2 10.1a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 1.9-1.4L21 8H6"></path>
+                            <circle cx="10" cy="20" r="1.25"></circle>
+                            <circle cx="18" cy="20" r="1.25"></circle>
+                        </svg>
+                        <span class="cartButtonLabel">View Cart</span>
+                        <span id="basketCounter"><span class="visually-hidden">Items in cart: </span>{{cartItemCount}}</span>
                     </button>
                 </div>
             </div>
@@ -69,62 +74,100 @@
             <!--Section Content-->
 
             <div class="content py-5 px-lg-5 mx-auto">
-                <section>
-                    <div class="splitPage">
-                        <div class="split1">
-                            <h3 class="splitHeader">Featured Products</h3>
-                            <div class="splitProductGrid">
-                                <div class="splitProduct">
-                                    <a href="shop.htm#Chinese Money Plant">
-                                        <image class="featureImage" src="images/stock/pilea.jpg" alt="chinese money plant"></image>
-                                        <h4>Chinese Money Plant</h4>
-                                    </a>
-                                    <p>A cute sun-loving pilea!</p>
-                                </div>
-                                <div class="splitProduct">
-                                    <a href="shop.htm#Polka Dot Begonia">
-                                    <image class="featureImage" src="images/stock/begoniamaculata.jpg" alt="polka dot begonia"></image>
-                                    <h4>Polka Dot Begonia</h4>
-                                </a>
-                                    <p>Check out this striking begonia with silver spots.</p>
-                                </div> 
-                                <div class="splitProduct">
-                                    <a href="shop.htm#String of Hearts">
-                                    <image class="featureImage" src="images/stock/stringofhearts.jpg" alt="string of hearts"></image>
-                                    <h4>String of Hearts</h4>
-                                </a>
-                                    <p>A gorgeous, water-wise trailing plant, native to South Africa.</p>
-                                </div>
-                            </div>                       
-                        </div>
-    
-                        <div class="split2">
-                            <h3 class="splitHeader">New: Rare & Collectors' Plants</h3>
-                            <div class="splitProductGrid">
-                                <div class="splitProduct">
-                                    <a href="shop.htm#Monstera Albo">
-                                    <image class="featureImage" src="images/stock/mosteravariegata.jpg" alt="monstera albo"></image>
-                                    <h4>Monstera Albo</h4>
-                                </a>
-                                    <p>This is a highly sought-after rare plant. Get yours while stocks last!</p>
-                                </div>
-                                <div class="splitProduct">
-                                    <a href="shop.htm#Stephania Erecta">
-                                    <image class="featureImage" src="images/stock/stephaniaerecta.jpg" alt="stephania erecta"></image>
-                                    <h4>Stephania Erecta</h4>
-                                </a>
-                                    <p>A hard-to-find caudex plant native to Thailand.</p>
-                                </div>
-                                <div class="splitProduct">
-                                    <a href="shop.htm#Monstera Adansonii">
-                                    <image class="featureImage" src="images/stock/minimonstera.jpg" alt="monstera adonsonii"></image>
-                                    <h4>Monstera Adansonii</h4>
-                                </a>
-                                    <p>No collection is complete without one of these!</p>
-                                </div>   
+                <section class="homeFeaturedSection" aria-labelledby="featuredProductsTitle">
+                    <h3 class="splitHeader" id="featuredProductsTitle">Featured Products</h3>
+                    <div class="homeFeaturedGrid">
+                        <article class="shopProduct homeProductCard"
+                            v-for="item in featuredHomeProducts" :key="item.name">
+                            <div class="productImageWrap">
+                                <button type="button" class="productImageButton"
+                                    :aria-label="'View details for ' + item.name" data-bs-toggle="modal"
+                                    data-bs-target="#productDetailsModal" @click="selectProduct(item, $event)">
+                                    <img class="productImage" :src="item.image" :alt="item.name">
+                                </button>
+                                <span class="rareBadge" v-if="item.category.includes('Rare')">Rare</span>
                             </div>
+                            <h4>{{item.name}}</h4>
+                            <p>{{item.teaser}}</p>
+                            <div class="homeProductActions">
+                                <p class="homeProductPrice price">R {{item.price}}</p>
+                                <button type="button" class="addButton homeProductAddButton"
+                                    :aria-label="'Add ' + item.name + ' to cart'" @click="addToBasket(item)">
+                                    <svg class="cartIcon" aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+                                        <path d="M3 4h2l2.2 10.1a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 1.9-1.4L21 8H6"></path>
+                                        <circle cx="10" cy="20" r="1.25"></circle>
+                                        <circle cx="18" cy="20" r="1.25"></circle>
+                                    </svg>
+                                    <span>Add to cart</span>
+                                </button>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <section class="homeCollectorSection" aria-labelledby="collectorPlantsTitle">
+                    <h3 class="splitHeader" id="collectorPlantsTitle">New: Rare &amp; Collectors' Plants</h3>
+                    <div class="homeCollectorLayout">
+                        <div class="homeCollectorIntro">
+                            <h4 class="homeCollectorIntroTitle">Rare finds, right to your doorstep!</h4>
+                            <p>Explore unusual plants chosen for distinctive foliage, forms and growing habits, from
+                                variegated Monsteras to sculptural caudex plants. Each listing includes plant-care
+                                guidance to help you choose a standout plant for your collection.</p>
+                            <ul class="homeBenefitBadges" aria-label="Rare plant offering benefits">
+                                <li>
+                                    <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+                                        <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21.5z"></path>
+                                        <path d="M4 5.5v16M8 7h8m-8 4h6"></path>
+                                    </svg>
+                                    <span>Care guidance included</span>
+                                </li>
+                                <li>
+                                    <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+                                        <path d="m3 7 9-4 9 4v10l-9 4-9-4z"></path>
+                                        <path d="m3 7 9 4 9-4M12 11v10"></path>
+                                    </svg>
+                                    <span>Carefully packaged</span>
+                                </li>
+                                <li>
+                                    <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+                                        <path d="M3 6h11v11H3z"></path>
+                                        <path d="M14 10h4l3 3v4h-7z"></path>
+                                        <circle cx="7.5" cy="18.5" r="1.5"></circle>
+                                        <circle cx="18" cy="18.5" r="1.5"></circle>
+                                    </svg>
+                                    <span>Ships in 2 business days</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="homeCollectorGrid">
+                            <article class="shopProduct homeProductCard"
+                                v-for="item in collectorHomeProducts" :key="item.name">
+                                <div class="productImageWrap">
+                                    <button type="button" class="productImageButton"
+                                        :aria-label="'View details for ' + item.name" data-bs-toggle="modal"
+                                        data-bs-target="#productDetailsModal" @click="selectProduct(item, $event)">
+                                        <img class="productImage" :src="item.image" :alt="item.name">
+                                    </button>
+                                    <span class="rareBadge" v-if="item.category.includes('Rare')">Rare</span>
+                                </div>
+                                <h4>{{item.name}}</h4>
+                                <p>{{item.teaser}}</p>
+                                <div class="homeProductActions">
+                                    <p class="homeProductPrice price">R {{item.price}}</p>
+                                    <button type="button" class="addButton homeProductAddButton"
+                                        :aria-label="'Add ' + item.name + ' to cart'" @click="addToBasket(item)">
+                                        <svg class="cartIcon" aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+                                            <path d="M3 4h2l2.2 10.1a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 1.9-1.4L21 8H6"></path>
+                                            <circle cx="10" cy="20" r="1.25"></circle>
+                                            <circle cx="18" cy="20" r="1.25"></circle>
+                                        </svg>
+                                        <span>Add to cart</span>
+                                    </button>
+                                </div>
+                            </article>
                         </div>
                     </div>
+                </section>
                     
                     <footer>
                         <hr>
@@ -132,21 +175,22 @@
                     </footer>
 
     <!--Cart-->
-    <div class="modal fade" id="basketLink" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="basketLink" tabindex="-1" aria-labelledby="cartTitle" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">My Cart</h5>
+                    <h5 class="modal-title" id="cartTitle">My Cart</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <p id="basketLength">Items: {{myBasket.length}}</p>
+                <p id="basketLength">Items: {{cartItemCount}}</p>
                 <div class="modal-body">
                     <ul class="basketList">
-                        <li class="basketItem" v-for='(item, index) in myBasket'>
-                            <image class="basketImage" :src="item.image" v.model="item.image"></image>
-                            <span>{{item.name}}</span>
-                            <span>R {{item.price}}</span>
-                            <button @click="deleteItem (item, index)" class="remove">&#10005</button>
+                        <li class="basketItem" v-for='(item, index) in myBasket' :key="item.name + '-' + index">
+                            <img class="basketImage" :src="item.image" :alt="item.name">
+                            <span>{{item.name}} × {{item.quantity}}</span>
+                            <span>R {{item.price * item.quantity}}</span>
+                            <button type="button" @click="deleteItem(item, index)" class="remove"
+                                :aria-label="'Remove ' + item.name + ' from cart'">&#10005;</button>
                         </li>
                     </ul>
                 </div>
@@ -154,10 +198,67 @@
                     <h4 id="basketTotal">Total: R {{total}}</h4>
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
                         <button type="button" id="checkout" class="btn btn-primary">Checkout</button>
-                    </a>
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="modal fade productDetailsModal" id="productDetailsModal" tabindex="-1"
+        aria-labelledby="productDetailsTitle" aria-describedby="productDetailsDescription" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered productDetailsDialog">
+            <div class="modal-content" v-if="selectedProduct">
+                <div class="modal-header">
+                    <div>
+                        <p class="productDetailsType">{{selectedProduct.type}}</p>
+                        <h2 class="modal-title" id="productDetailsTitle">{{selectedProduct.name}}</h2>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body productDetailsBody">
+                    <div class="productDetailsImageWrap">
+                        <img class="productDetailsImage" :src="selectedProduct.image" :alt="selectedProduct.name">
+                        <span class="productDetailsRareBadge"
+                            v-if="selectedProduct.category.includes('Rare')">Rare</span>
+                    </div>
+                    <div class="productDetailsCopy">
+                        <section class="productDescription">
+                            <h3>Description</h3>
+                            <p id="productDetailsDescription">{{selectedPlantDetails.description}}</p>
+                        </section>
+                        <section class="plantCare">
+                            <h3>Plant care</h3>
+                            <p>{{selectedPlantDetails.care}}</p>
+                        </section>
+                        <p class="productDetailsPrice">R {{selectedProduct.price}}</p>
+                        <div class="productDetailsActions">
+                            <label for="productQuantity">Quantity</label>
+                            <input id="productQuantity" type="number" min="1" step="1" required
+                                v-model.number="detailQuantity" @input="validateQuantity"
+                                :aria-invalid="quantityError ? 'true' : 'false'"
+                                :aria-describedby="quantityError ? 'quantityError' : null">
+                            <button type="button" class="addButton" @click="addSelectedToBasket">
+                                <svg class="cartIcon" aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+                                    <path d="M3 4h2l2.2 10.1a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 1.9-1.4L21 8H6"></path>
+                                    <circle cx="10" cy="20" r="1.25"></circle>
+                                    <circle cx="18" cy="20" r="1.25"></circle>
+                                </svg>
+                                <span>Add to cart</span>
+                            </button>
+                        </div>
+                        <p v-if="quantityError" id="quantityError" class="quantityError" role="alert">
+                            {{quantityError}}
+                        </p>
+                        <p class="cartFeedback" role="status" aria-live="polite">{{cartMessage}}</p>
+                    </div>
+                    <p class="shippingNotice">Shipping takes 2 business days. All plants are carefully packaged and
+                        shipped in cool conditions to ensure that they arrive in top condition.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+    </div>
     </div>
 
     <!--Javascript, Popper, Jquery bundle-->
@@ -168,6 +269,9 @@
         integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
         crossorigin="anonymous"></script>
         <script src="scripts/script.js"></script>
+        <script src="scripts/cart.js"></script>
+        <script src="scripts/plant-details.js"></script>
+
         <script>
             new Vue({
                 el: '#vueArea',
@@ -183,33 +287,161 @@
                         price: '',
                     },
 
+                    homePlants: [
+                        {
+                            name: 'Chinese Money Plant',
+                            type: 'Pilea',
+                            category: ['Standing', 'Regular', 'Common'],
+                            addedToBasket: false,
+                            image: 'images/stock/pilea.jpg',
+                            price: 140,
+                            teaser: 'A cute sun-loving pilea to add cheer to any space.',
+                        },
+                        {
+                            name: 'Polka Dot Begonia',
+                            type: 'Begonia',
+                            category: ['Standing', 'Regular', 'Uncommon'],
+                            addedToBasket: false,
+                            image: 'images/stock/begoniamaculata.jpg',
+                            price: 210,
+                            teaser: 'Check out this striking begonia with silver spots.',
+                        },
+                        {
+                            name: 'String of Hearts',
+                            type: 'Ceropegia',
+                            category: ['Trailing', 'Uncommon', 'Regular', 'Water-wise'],
+                            addedToBasket: false,
+                            image: 'images/stock/stringofhearts.jpg',
+                            price: 235,
+                            teaser: 'A gorgeous, water-wise trailing plant, native to South Africa.',
+                        },
+                        {
+                            name: 'Mont Blanc',
+                            type: 'Succulent',
+                            category: ['Standing', 'Regular', 'Uncommon', 'Water-wise'],
+                            addedToBasket: false,
+                            image: 'images/stock/montblanc.jpg',
+                            price: 195,
+                            teaser: 'A distinctive, water-wise succulent.',
+                        },
+                        {
+                            name: 'Monstera Albo',
+                            type: 'Monstera',
+                            category: ['Standing', 'Rare', 'Large'],
+                            addedToBasket: false,
+                            image: 'images/stock/mosteravariegata.jpg',
+                            price: 4900,
+                            teaser: 'A highly sought-after rare plant. While stocks last.',
+                        },
+                        {
+                            name: 'Stephania Erecta',
+                            type: 'Caudex',
+                            category: ['Standing', 'Rare', 'Regular'],
+                            addedToBasket: false,
+                            image: 'images/stock/stephaniaerecta.jpg',
+                            price: 1300,
+                            teaser: 'A hard-to-find caudex plant native to Thailand.',
+                        },
+                        {
+                            name: 'Monstera Adansonii',
+                            type: 'Monstera',
+                            category: ['Climbing', 'Uncommon', 'Regular'],
+                            addedToBasket: false,
+                            image: 'images/stock/minimonstera.jpg',
+                            price: 250,
+                            teaser: 'No collection is complete without one of these!',
+                        },
+                    ],
+
                     myBasket: [],
 
-                    total: 0,
+                    selectedProduct: null,
+                    productTrigger: null,
+                    detailQuantity: 1,
+                    quantityError: '',
+                    cartMessage: '',
+
                 },
 
                 methods: {
-                            deleteItem(item, index) {
-                                this.total = parseFloat(this.total) - parseFloat(item.price);
-                                this.myBasket.splice(index, 1);
-                                const taskArrStorage = JSON.stringify(this.myBasket);
-                                const totalStorage = JSON.stringify(this.total);
-                                localStorage.setItem("taskArrStorage", taskArrStorage);
-                                localStorage.setItem("totalStorage", totalStorage);
-                                console.log('Array Stored in Local')
-                            }
-                        },
+                    selectProduct(item, event) {
+                        this.selectedProduct = item;
+                        this.productTrigger = event.currentTarget;
+                        this.detailQuantity = 1;
+                        this.quantityError = '';
+                        this.cartMessage = '';
+                    },
 
-                mounted: function (item) {
-                    let basketSaved = localStorage.getItem("taskArrStorage");
-                    let totalSaved = localStorage.getItem("totalStorage");
-                    let basketLoad = JSON.parse(basketSaved);
-                    let totalLoad = JSON.parse(totalSaved);
-                    if (basketLoad === null) {
-                        console.log('No objects in array')
-                    } else {
-                        this.myBasket.push(...basketLoad);
-                        this.total = parseFloat(totalLoad);
+                    validateQuantity() {
+                        this.quantityError = Number.isFinite(this.detailQuantity) &&
+                            !Number.isInteger(this.detailQuantity)
+                            ? 'Enter a whole number of plants.'
+                            : '';
+                    },
+
+                    addToBasket(item, quantity = 1) {
+                        item.addedToBasket = true;
+                        FrondCart.add(this.myBasket, item, quantity);
+                        FrondCart.save(this.myBasket);
+                    },
+
+                    addSelectedToBasket() {
+                        if (!this.selectedProduct) {
+                            this.quantityError = 'Choose a plant before adding it to your cart.';
+                            return;
+                        }
+                        this.validateQuantity();
+                        if (!Number.isInteger(this.detailQuantity) || this.detailQuantity < 1) {
+                            if (!this.quantityError) {
+                                this.quantityError = 'Choose a quantity of at least 1.';
+                            }
+                            return;
+                        }
+
+                        this.addToBasket(this.selectedProduct, this.detailQuantity);
+                        this.quantityError = '';
+                        this.cartMessage = this.detailQuantity === 1
+                            ? 'Added to your cart.'
+                            : this.detailQuantity + ' plants added to your cart.';
+                    },
+
+                    deleteItem(item, index) {
+                        this.myBasket.splice(index, 1);
+                        FrondCart.save(this.myBasket);
+                    }
+                },
+
+                mounted: function () {
+                    this.myBasket = FrondCart.load();
+                    FrondCart.save(this.myBasket);
+                    document.getElementById('productDetailsModal').addEventListener('hidden.bs.modal', () => {
+                        if (this.productTrigger && this.productTrigger.isConnected) {
+                            this.productTrigger.focus();
+                        }
+                    });
+                },
+
+                computed: {
+                    featuredHomeProducts: function () {
+                        return this.homePlants.slice(0, 4);
+                    },
+
+                    collectorHomeProducts: function () {
+                        return this.homePlants.slice(4);
+                    },
+
+                    cartItemCount: function () {
+                        return FrondCart.count(this.myBasket);
+                    },
+
+                    total: function () {
+                        return FrondCart.total(this.myBasket);
+                    },
+
+                    selectedPlantDetails: function () {
+                        return this.selectedProduct
+                            ? FrondPlantDetails[this.selectedProduct.name]
+                            : null;
                     }
                 },
 

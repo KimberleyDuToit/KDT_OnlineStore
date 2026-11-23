@@ -33,14 +33,19 @@
                     <li class="nav-item"><a class="nav-link" href="shop.htm">SHOP</a></li>
                     <li class="nav-item"><a class="nav-link" href="lookbook.htm">LOOKBOOK</a></li>
                     <li class="nav-item"><a class="nav-link" href="about.htm">ABOUT</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contact.htm">CONTACT</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.htm" aria-current="page">CONTACT</a></li>
                 </ul>
                 <!--Button for Cart-->
                 <div>
                     <button id="basket" type="button" class="btn btn-primary  my-xl-0 my-lg-0 my-md-3 my-sm-3 my-xs-3"
                         data-bs-toggle="modal" data-bs-target="#basketLink">
-                        <div id="basketCounter"><span id="counterText"></span>{{myBasket.length}}</span></div>
-                        View Cart
+                        <svg class="cartIcon cartButtonIcon" aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+                            <path d="M3 4h2l2.2 10.1a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 1.9-1.4L21 8H6"></path>
+                            <circle cx="10" cy="20" r="1.25"></circle>
+                            <circle cx="18" cy="20" r="1.25"></circle>
+                        </svg>
+                        <span class="cartButtonLabel">View Cart</span>
+                        <span id="basketCounter"><span class="visually-hidden">Items in cart: </span>{{cartItemCount}}</span>
                     </button>
                 </div>
             </div>
@@ -59,34 +64,37 @@
 
             <div class="content py-5 px-lg-5 mx-auto">
                 <section>
-                    <div class="splitPage">
+                    <div class="splitPage contactPageLayout">
                         <div class="split1">
-                            <div>
-                                <h3 class="splitHeader">Contact details</h3>
-                                <p>info@frond.com</p>
-                                <p>012 567 4321</p>
-                            </div>
-                            <h3 class="splitHeader">Send us a message</h3>
-                            <div>
-                                <form id="contactForm" action="mailto:kimberley.anne.watson1@gmail.com" enctype="text/plain">
-                                    <div class="formLine">
-                                        <label>Full Name *</label>
-                                        <input type="text" placeholder="Full Name" required>
-                                    </div>                
-                                    <div class="formLine">
-                                        <label>Email Address *</label>
-                                        <input type="email" placeholder="Email" required>
-                                    </div>
-                                    <div class="formLine">
-                                        <label>Mobile Number</label>
-                                        <input type="tel" placeholder="Number">
-                                    </div>
-                                    <div class="formLine">
-                                        <label>Message *</label>
-                                        <textarea rows="4" cols="50" name="message" form="contactForm" placeholder="Your message here"></textarea>
-                                    </div>
-                                        <input type="submit">
-                                </form>
+                            <div class="contactCard">
+                                <div>
+                                    <h3 class="splitHeader">Contact details</h3>
+                                    <p>info@frond.com</p>
+                                    <p>012 567 4321</p>
+                                </div>
+                                <div>
+                                    <h3 class="splitHeader">Send us a message</h3>
+                                    <form id="contactForm" action="mailto:kimberley.anne.watson1@gmail.com" enctype="text/plain">
+                                        <div class="formLine">
+                                            <label>Full Name *</label>
+                                            <input type="text" placeholder="Full Name" required>
+                                        </div>
+                                        <div class="formLine">
+                                            <label>Email Address *</label>
+                                            <input type="email" placeholder="Email" required>
+                                        </div>
+                                        <div class="formLine">
+                                            <label>Mobile Number</label>
+                                            <input type="tel" placeholder="Number">
+                                        </div>
+                                        <div class="formLine">
+                                            <label>Message *</label>
+                                            <textarea rows="4" cols="50" name="message" form="contactForm"
+                                                placeholder="Your message here"></textarea>
+                                        </div>
+                                        <button type="submit" class="addButton contactSubmitButton">Submit</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
 
@@ -115,21 +123,22 @@
                 </footer>
 
                 <!--Cart-->
-                <div class="modal fade" id="basketLink" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="basketLink" tabindex="-1" aria-labelledby="cartTitle" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title">My Cart</h5>
+                                <h5 class="modal-title" id="cartTitle">My Cart</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <p id="basketLength">Items: {{myBasket.length}}</p>
+                            <p id="basketLength">Items: {{cartItemCount}}</p>
                             <div class="modal-body">
                                 <ul class="basketList">
-                                    <li class="basketItem" v-for='(item, index) in myBasket'>
-                                        <image class="basketImage" :src="item.image" v.model="item.image"></image>
-                                        <span>{{item.name}}</span>
-                                        <span>R {{item.price}}</span>
-                                        <button @click="deleteItem (item, index)" class="remove">&#10005</button>
+                                    <li class="basketItem" v-for='(item, index) in myBasket' :key="item.name + '-' + index">
+                                        <img class="basketImage" :src="item.image" :alt="item.name">
+                                        <span>{{item.name}} × {{item.quantity}}</span>
+                                        <span>R {{item.price * item.quantity}}</span>
+                                        <button type="button" @click="deleteItem(item, index)" class="remove"
+                                            :aria-label="'Remove ' + item.name + ' from cart'">&#10005;</button>
                                     </li>
                                 </ul>
                             </div>
@@ -137,10 +146,13 @@
                                 <h4 id="basketTotal">Total: R {{total}}</h4>
                                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
                                     <button type="button" id="checkout" class="btn btn-primary">Checkout</button>
-                                </a>
                             </div>
                         </div>
                     </div>
+                </div>
+
+                </div>
+                </div>
                 </div>
 
                 <!--Javascript, Popper, Jquery bundle-->
@@ -152,6 +164,7 @@
                     integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
                     crossorigin="anonymous"></script>
                     <script src="scripts/script.js"></script>
+                    <script src="scripts/cart.js"></script>
                     <script>
                         new Vue({
                             el: '#vueArea',
@@ -169,31 +182,27 @@
             
                                 myBasket: [],
             
-                                total: 0,
                             },
             
                             methods: {
-                                        deleteItem(item, index) {
-                                            this.total = parseFloat(this.total) - parseFloat(item.price);
-                                            this.myBasket.splice(index, 1);
-                                            const taskArrStorage = JSON.stringify(this.myBasket);
-                                            const totalStorage = JSON.stringify(this.total);
-                                            localStorage.setItem("taskArrStorage", taskArrStorage);
-                                            localStorage.setItem("totalStorage", totalStorage);
-                                            console.log('Array Stored in Local')
-                                        }
-                                    },
+                                deleteItem(item, index) {
+                                    this.myBasket.splice(index, 1);
+                                    FrondCart.save(this.myBasket);
+                                }
+                            },
             
-                            mounted: function (item) {
-                                let basketSaved = localStorage.getItem("taskArrStorage");
-                                let totalSaved = localStorage.getItem("totalStorage");
-                                let basketLoad = JSON.parse(basketSaved);
-                                let totalLoad = JSON.parse(totalSaved);
-                                if (basketLoad === null) {
-                                    console.log('No objects in array')
-                                } else {
-                                    this.myBasket.push(...basketLoad);
-                                    this.total = parseFloat(totalLoad);
+                            mounted: function () {
+                                this.myBasket = FrondCart.load();
+                                FrondCart.save(this.myBasket);
+                            },
+
+                            computed: {
+                                cartItemCount: function () {
+                                    return FrondCart.count(this.myBasket);
+                                },
+
+                                total: function () {
+                                    return FrondCart.total(this.myBasket);
                                 }
                             },
             

@@ -30,7 +30,7 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav nav-fill w-70 menulinks mx-auto">
-                    <li class="nav-item"><a class="nav-link" href="shop.htm">SHOP</a></li>
+                    <li class="nav-item"><a class="nav-link" href="shop.htm" aria-current="page">SHOP</a></li>
                     <li class="nav-item"><a class="nav-link" href="lookbook.htm">LOOKBOOK</a></li>
                     <li class="nav-item"><a class="nav-link" href="about.htm">ABOUT</a></li>
                     <li class="nav-item"><a class="nav-link" href="contact.htm">CONTACT</a></li>
@@ -39,8 +39,13 @@
                 <div>
                     <button id="basket" type="button" class="btn btn-primary  my-xl-0 my-lg-0 my-md-3 my-sm-3 my-xs-3"
                         data-bs-toggle="modal" data-bs-target="#basketLink">
-                        <div id="basketCounter"><span id="counterText"></span>{{myBasket.length}}</span></div>
-                        View Cart
+                        <svg class="cartIcon cartButtonIcon" aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+                            <path d="M3 4h2l2.2 10.1a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 1.9-1.4L21 8H6"></path>
+                            <circle cx="10" cy="20" r="1.25"></circle>
+                            <circle cx="18" cy="20" r="1.25"></circle>
+                        </svg>
+                        <span class="cartButtonLabel">View Cart</span>
+                        <span id="basketCounter"><span class="visually-hidden">Items in cart: </span>{{cartItemCount}}</span>
                     </button>
                 </div>
             </div>
@@ -60,91 +65,83 @@
             <div class="content py-5 col-xl-8 px-xl-5 px-lg-5 px-md-5 px-sm-3 mx-auto" id="shopContent">
                 <section>
                     <div class="shopPage">
-                        <div class="filterBlock">
-                            <h4 id="sort">Sort:</h4>
-                            <button @click="sort('name')" id="sortName" type="button" class="btn btn-primary">Sort
-                                Alphabetically</button>
-                            <button @click="sort('type')" id="sortType" type="button" class="btn btn-primary">Sort by
-                                Type</button>
-                            <button @click="sort('price')" id="sortPrice" type="button" class="btn btn-primary">Sort by
-                                Price</button>
-                            <h4 id="filter">Filter:</h4>
-                            <select id="filterDrop" name="Type of Plant" v-model="filterType">
-                                <option value="" disabled selected hidden>Type of Plant</option>
-                                <option value="All">All Plant Types</option>
-                                <option value="Aglaonema">Aglaonema</option>
-                                <option value="Alocasia">Alocasia</option>
-                                <option value="Anthurium">Anthurium</option>
-                                <option value="Begonia">Begonia</option>
-                                <option value="Calathea">Calathea</option>
-                                <option value="Fern">Fern</option>
-                                <option value="Ficus">Ficus</option>
-                                <option value="Monstera">Monstera</option>
-                                <option value="Palm">Palm</option>
-                                <option value="Pothos">Pothos</option>
-                                <option value="Sanseveria">Sanseveria</option>
-                                <option value="Syngonium">Syngonium</option>
-                            </select>
-                            <h4 id="include">Include:</h4>
-                            <div id="checkCategories">
-                                <div><input type="checkbox" id="checkTrailing" v-model="showTrailing">
-                                    <label for="checkTrailing">Trailing</label>
-                                </div>
-                                <div><input type="checkbox" id="checkClimbing" v-model="showClimbing">
-                                    <label for="checkClimbing">Climbing</label>
-                                </div>
-                                <div><input type="checkbox" id="checkStanding" v-model="showStanding">
-                                    <label for="checkStanding">Standing</label>
-                                </div>
-                                <div><input type="checkbox" id="checkLarge" v-model="showLarge">
-                                    <label for="checkLarge">Large</label>
-                                </div>
-                                <div><input type="checkbox" id="checkRegular" v-model="showRegular">
-                                    <label for="checkRegular">Small/Medium</label>
-                                </div>
-                                <div><input type="checkbox" id="checkWaterwise" v-model="showWaterwise">
-                                    <label for="checkWaterwise">Water-wise</label>
-                                </div>
-                                <div><input type="checkbox" id="checkShadeloving" v-model="showShadeloving">
-                                    <label for="checkShadeloving">Shade-loving</label>
-                                </div>
-                                <div><input type="checkbox" id="checkRare" v-model="showRare">
-                                    <label for="checkRare">Rare</label>
-                                </div>
-                                <div><input type="checkbox" id="checkUncommon" v-model="showUncommon">
-                                    <label for="checkUncommon">Uncommon</label>
-                                </div>
-                                <div><input type="checkbox" id="checkCommon" v-model="showCommon">
-                                    <label for="checkCommon">Common</label>
+                        <div class="shopResults">
+                            <div class="sortToolbar">
+                                <details class="filterDropdown filterDropdown--types">
+                                    <summary>
+                                        <span>Plant type</span>
+                                        <span class="filterCount">{{selectedTypes.length}}/{{plantTypes.length}}</span>
+                                    </summary>
+                                    <div class="filterDropdownMenu">
+                                        <div class="filterDropdownActions">
+                                            <button type="button" @click="selectAllTypes">Select all</button>
+                                            <button type="button" @click="clearTypes">Clear</button>
+                                        </div>
+                                        <fieldset>
+                                            <legend class="visually-hidden">Filter by plant type</legend>
+                                            <label v-for="type in plantTypes" :key="type">
+                                                <input type="checkbox" :value="type" v-model="selectedTypes">
+                                                <span>{{type}}</span>
+                                            </label>
+                                        </fieldset>
+                                    </div>
+                                </details>
+                                <details class="filterDropdown filterDropdown--categories">
+                                    <summary>
+                                        <span>Category</span>
+                                        <span class="filterCount">{{selectedCategories.length}}/{{categoryOptions.length}}</span>
+                                    </summary>
+                                    <div class="filterDropdownMenu">
+                                        <div class="filterDropdownActions">
+                                            <button type="button" @click="selectAllCategories">Select all</button>
+                                            <button type="button" @click="clearCategories">Clear</button>
+                                        </div>
+                                        <fieldset>
+                                            <legend class="visually-hidden">Filter by category</legend>
+                                            <label v-for="category in categoryOptions" :key="category.value">
+                                                <input type="checkbox" :value="category.value" v-model="selectedCategories">
+                                                <span>{{category.label}}</span>
+                                            </label>
+                                        </fieldset>
+                                    </div>
+                                </details>
+                                <div class="sortControl">
+                                    <label for="sortDrop">Sort by</label>
+                                    <select id="sortDrop" name="sortProducts" v-model="sortOption">
+                                        <option value="price-asc">Price: Low to high (ascending)</option>
+                                        <option value="price-desc">Price: High to low (descending)</option>
+                                        <option value="name-asc">Name: A-Z</option>
+                                        <option value="name-desc">Name: Z-A</option>
+                                        <option value="type">Type</option>
+                                        <option value="best-selling" disabled>Best-selling</option>
+                                    </select>
                                 </div>
                             </div>
-
-                        </div>
-                        <div class="shopGrid">
-                            <div class="shopProduct" v-for='(item, index) in sortedItems'
-                                v-if="(item.type === filterType || filterType === 'All')" :class="{shopProduct, hide: (item.category.includes('Trailing') && showTrailing === false) ||
-                            (item.category.includes('Climbing') && showClimbing === false) ||
-                            (item.category.includes('Standing') && showStanding === false) ||
-                            (item.category.includes('Large') && showLarge === false) ||
-                            (item.category.includes('Water-wise') && showWaterwise === false) ||
-                            (item.category.includes('Common') && showCommon === false) ||
-                            (item.category.includes('Rare') && showRare === false) ||
-                            (item.category.includes('Shade-loving') && showShadeloving === false) ||
-                            (item.category.includes('Regular') && showRegular === false ||
-                            (item.category.includes('Uncommon') && showUncommon === false))}">
-                                <image class="productImage" :src="item.image" v.model="item.image" :id="item.name">
-                                </image>
-                                <h4 v-model="item.name">{{item.name}}</h4>
-                                <p v-model="item.type">{{item.type}}</p>
-                                <p class="price" v-model="item.price">R {{item.price}}</p>
-                                <button class="addButton" @click="addToBasket(item)">
-                                    <svg class="cartIcon" aria-hidden="true" focusable="false" viewBox="0 0 24 24">
-                                        <path d="M3 4h2l2.2 10.1a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 1.9-1.4L21 8H6"></path>
-                                        <circle cx="10" cy="20" r="1.25"></circle>
-                                        <circle cx="18" cy="20" r="1.25"></circle>
-                                    </svg>
-                                    <span>Add to cart</span>
-                                </button>
+                            <div class="shopGrid">
+                                <div class="shopProduct" v-for="item in filteredItems" :key="item.name">
+                                    <div class="productImageWrap">
+                                        <button type="button" class="productImageButton" :id="item.name"
+                                            :aria-label="'View details for ' + item.name" data-bs-toggle="modal"
+                                            data-bs-target="#productDetailsModal" @click="selectProduct(item, $event)">
+                                            <img class="productImage" :src="item.image" :alt="item.name">
+                                        </button>
+                                        <span class="rareBadge" v-if="item.category.includes('Rare')">Rare</span>
+                                    </div>
+                                    <h4>{{item.name}}</h4>
+                                    <p>{{item.type}}</p>
+                                    <p class="price">R {{item.price}}</p>
+                                    <button class="addButton" @click="addToBasket(item)">
+                                        <svg class="cartIcon" aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+                                            <path d="M3 4h2l2.2 10.1a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 1.9-1.4L21 8H6"></path>
+                                            <circle cx="10" cy="20" r="1.25"></circle>
+                                            <circle cx="18" cy="20" r="1.25"></circle>
+                                        </svg>
+                                        <span>Add to cart</span>
+                                    </button>
+                                </div>
+                                <p v-if="filteredItems.length === 0" class="emptyResults" role="status">
+                                    No plants match the selected filters.
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -157,21 +154,22 @@
                 </footer>
 
                 <!--Cart-->
-                <div class="modal fade" id="basketLink" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="basketLink" tabindex="-1" aria-labelledby="cartTitle" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title">My Cart</h5>
+                                <h5 class="modal-title" id="cartTitle">My Cart</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <p id="basketLength">Items: {{myBasket.length}}</p>
+                            <p id="basketLength">Items: {{cartItemCount}}</p>
                             <div class="modal-body">
                                 <ul class="basketList">
-                                    <li class="basketItem" v-for='(item, index) in myBasket'>
-                                        <image class="basketImage" :src="item.image" v.model="item.image"></image>
-                                        <span>{{item.name}}</span>
-                                        <span>R {{item.price}}</span>
-                                        <button @click="deleteItem (item, index)" class="remove">&#10005</button>
+                                    <li class="basketItem" v-for='(item, index) in myBasket' :key="item.name + '-' + index">
+                                        <img class="basketImage" :src="item.image" :alt="item.name">
+                                        <span>{{item.name}} × {{item.quantity}}</span>
+                                        <span>R {{item.price * item.quantity}}</span>
+                                        <button type="button" @click="deleteItem(item, index)" class="remove"
+                                            :aria-label="'Remove ' + item.name + ' from cart'">&#10005;</button>
                                     </li>
                                 </ul>
                             </div>
@@ -179,11 +177,70 @@
                                 <h4 id="basketTotal">Total: R {{total}}</h4>
                                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
                                     <button type="button" id="checkout" class="btn btn-primary">Checkout</button>
-                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <div class="modal fade productDetailsModal" id="productDetailsModal" tabindex="-1"
+                    aria-labelledby="productDetailsTitle" aria-describedby="productDetailsDescription"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered productDetailsDialog">
+                        <div class="modal-content" v-if="selectedProduct">
+                            <div class="modal-header">
+                                <div>
+                                    <p class="productDetailsType">{{selectedProduct.type}}</p>
+                                    <h2 class="modal-title" id="productDetailsTitle">{{selectedProduct.name}}</h2>
+                                </div>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body productDetailsBody">
+                                <div class="productDetailsImageWrap">
+                                    <img class="productDetailsImage" :src="selectedProduct.image" :alt="selectedProduct.name">
+                                    <span class="productDetailsRareBadge"
+                                        v-if="selectedProduct.category.includes('Rare')">Rare</span>
+                                </div>
+                                <div class="productDetailsCopy">
+                                    <section class="productDescription">
+                                        <h3>Description</h3>
+                                        <p id="productDetailsDescription">{{selectedPlantDetails.description}}</p>
+                                    </section>
+                                    <section class="plantCare">
+                                        <h3>Plant care</h3>
+                                        <p>{{selectedPlantDetails.care}}</p>
+                                    </section>
+                                    <p class="productDetailsPrice">R {{selectedProduct.price}}</p>
+                                    <div class="productDetailsActions">
+                                        <label for="productQuantity">Quantity</label>
+                                        <input id="productQuantity" type="number" min="1" step="1" required
+                                            v-model.number="detailQuantity"
+                                            @input="validateQuantity"
+                                            :aria-invalid="quantityError ? 'true' : 'false'"
+                                            :aria-describedby="quantityError ? 'quantityError' : null">
+                                        <button type="button" class="addButton" @click="addSelectedToBasket">
+                                            <svg class="cartIcon" aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+                                                <path d="M3 4h2l2.2 10.1a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 1.9-1.4L21 8H6"></path>
+                                                <circle cx="10" cy="20" r="1.25"></circle>
+                                                <circle cx="18" cy="20" r="1.25"></circle>
+                                            </svg>
+                                            <span>Add to cart</span>
+                                        </button>
+                                    </div>
+                                    <p v-if="quantityError" id="quantityError" class="quantityError" role="alert">
+                                        {{quantityError}}
+                                    </p>
+                                    <p class="cartFeedback" role="status" aria-live="polite">{{cartMessage}}</p>
+                                </div>
+                                <p class="shippingNotice">Shipping takes 2 business days. All plants are carefully
+                                    packaged and shipped in cool conditions to ensure that they arrive in top condition.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
 
                 <!--Javascript, Popper, Jquery bundle-->
                 <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
@@ -194,6 +251,8 @@
                     integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
                     crossorigin="anonymous"></script>
                 <script src="scripts/script.js"></script>
+                <script src="scripts/cart.js"></script>
+                <script src="scripts/plant-details.js"></script>
 
                 <script>
                     new Vue({
@@ -577,7 +636,7 @@
                                 {
                                     name: 'Calathea Makoyana',
                                     type: 'Calathea',
-                                    category: ['Standing', 'Regular', 'Commmon'],
+                                    category: ['Standing', 'Regular', 'Common'],
                                     new: false,
                                     featured: false,
                                     addedToBasket: false,
@@ -720,74 +779,152 @@
 
                             myBasket: [],
 
-                            sortBy: 'name',
-                            sortDirection: 'asc',
-                            filterType: 'All',
-                            showTrailing: true,
-                            showClimbing: true,
-                            showStanding: true,
-                            showLarge: true,
-                            showRegular: true,
-                            showWaterwise: true,
-                            showShadeloving: true,
-                            showRare: true,
-                            showUncommon: true,
-                            showCommon: true,
+                            selectedProduct: null,
+                            productTrigger: null,
+                            detailQuantity: 1,
+                            quantityError: '',
+                            cartMessage: '',
 
-                            total: 0,
+                            sortOption: 'name-asc',
+                            selectedTypes: [],
+                            categoryOptions: [
+                                { value: 'Trailing', label: 'Trailing' },
+                                { value: 'Climbing', label: 'Climbing' },
+                                { value: 'Standing', label: 'Standing' },
+                                { value: 'Large', label: 'Large' },
+                                { value: 'Regular', label: 'Small/Medium' },
+                                { value: 'Water-wise', label: 'Water-wise' },
+                                { value: 'Shade-loving', label: 'Shade-loving' },
+                                { value: 'Rare', label: 'Rare' },
+                                { value: 'Uncommon', label: 'Uncommon' },
+                                { value: 'Common', label: 'Common' },
+                            ],
+                            selectedCategories: [],
+
+                        },
+
+                        created: function () {
+                            this.selectedTypes = this.plantTypes.slice();
+                            this.selectedCategories = this.categoryOptions.map(category => category.value);
                         },
 
                         methods: {
-                            sort: function (s) {
-                                if (s === this.sortBy) {
-                                    this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
-                                }
-                                this.sortBy = s;
+                            selectAllTypes: function () {
+                                this.selectedTypes = this.plantTypes.slice();
                             },
 
-                            addToBasket(item) {
+                            clearTypes: function () {
+                                this.selectedTypes = [];
+                            },
+
+                            selectAllCategories: function () {
+                                this.selectedCategories = this.categoryOptions.map(category => category.value);
+                            },
+
+                            clearCategories: function () {
+                                this.selectedCategories = [];
+                            },
+
+                            selectProduct(item, event) {
+                                this.selectedProduct = item;
+                                this.productTrigger = event.currentTarget;
+                                this.detailQuantity = 1;
+                                this.quantityError = '';
+                                this.cartMessage = '';
+                            },
+
+                            validateQuantity() {
+                                this.quantityError = Number.isFinite(this.detailQuantity) &&
+                                    !Number.isInteger(this.detailQuantity)
+                                    ? 'Enter a whole number of plants.'
+                                    : '';
+                            },
+
+                            addToBasket(item, quantity = 1) {
                                 item.addedToBasket = true;
-                                this.total = parseFloat(this.total) + parseFloat(item.price);
-                                this.myBasket.push(Object.assign({}, item));
-                                const taskArrStorage = JSON.stringify(this.myBasket);
-                                const totalStorage = JSON.stringify(this.total);
-                                localStorage.setItem("taskArrStorage", taskArrStorage);
-                                localStorage.setItem("totalStorage", totalStorage);
-                                console.log('Array Stored in Local')
+                                FrondCart.add(this.myBasket, item, quantity);
+                                FrondCart.save(this.myBasket);
+                            },
+
+                            addSelectedToBasket() {
+                                if (!this.selectedProduct) {
+                                    this.quantityError = 'Choose a plant before adding it to your cart.';
+                                    return;
+                                }
+                                this.validateQuantity();
+                                if (!Number.isInteger(this.detailQuantity) || this.detailQuantity < 1) {
+                                    if (!this.quantityError) {
+                                        this.quantityError = 'Choose a quantity of at least 1.';
+                                    }
+                                    return;
+                                }
+
+                                this.addToBasket(this.selectedProduct, this.detailQuantity);
+                                this.quantityError = '';
+                                this.cartMessage = this.detailQuantity === 1
+                                    ? 'Added to your cart.'
+                                    : this.detailQuantity + ' plants added to your cart.';
                             },
 
                             deleteItem(item, index) {
-                                this.total = parseFloat(this.total) - parseFloat(item.price);
                                 this.myBasket.splice(index, 1);
-                                const taskArrStorage = JSON.stringify(this.myBasket);
-                                const totalStorage = JSON.stringify(this.total);
-                                localStorage.setItem("taskArrStorage", taskArrStorage);
-                                localStorage.setItem("totalStorage", totalStorage);
-                                console.log('Array Stored in Local')
+                                FrondCart.save(this.myBasket);
                             },
                         },
 
-                        mounted: function (item) {
-                            let basketSaved = localStorage.getItem("taskArrStorage");
-                            let totalSaved = localStorage.getItem("totalStorage");
-                            let basketLoad = JSON.parse(basketSaved);
-                            let totalLoad = JSON.parse(totalSaved);
-                            if (basketLoad === null) {
-                                console.log('No objects in array')
-                            } else {
-                                this.myBasket.push(...basketLoad);
-                                this.total = parseFloat(totalLoad);
-                            }
+                        mounted: function () {
+                            this.myBasket = FrondCart.load();
+                            FrondCart.save(this.myBasket);
+                            document.getElementById('productDetailsModal').addEventListener('hidden.bs.modal', () => {
+                                if (this.productTrigger && this.productTrigger.isConnected) {
+                                    this.productTrigger.focus();
+                                }
+                            });
                         },
 
                         computed: {
+                            cartItemCount: function () {
+                                return FrondCart.count(this.myBasket);
+                            },
+
+                            total: function () {
+                                return FrondCart.total(this.myBasket);
+                            },
+
+                            selectedPlantDetails: function () {
+                                return this.selectedProduct
+                                    ? FrondPlantDetails[this.selectedProduct.name]
+                                    : null;
+                            },
+
+                            plantTypes: function () {
+                                return Array.from(new Set(this.plantRange.map(item => item.type)))
+                                    .sort((a, b) => a.localeCompare(b));
+                            },
+
                             sortedItems: function () {
-                                return this.plantRange.sort((p1, p2) => {
-                                    let modifier = 1;
-                                    if (this.sortDirection === 'desc') modifier = -1;
-                                    if (p1[this.sortBy] < p2[this.sortBy]) return -1 * modifier; if (p1[this.sortBy] > p2[this.sortBy]) return 1 * modifier;
-                                    return 0;
+                                const compareNames = (p1, p2) => p1.name.localeCompare(p2.name);
+                                const compareTypes = (p1, p2) =>
+                                    p1.type.localeCompare(p2.type) || compareNames(p1, p2);
+                                const sortComparators = {
+                                    'price-asc': (p1, p2) => p1.price - p2.price || compareNames(p1, p2),
+                                    'price-desc': (p1, p2) => p2.price - p1.price || compareNames(p1, p2),
+                                    'name-asc': compareNames,
+                                    'name-desc': (p1, p2) => compareNames(p2, p1),
+                                    type: compareTypes,
+                                };
+                                const compare = sortComparators[this.sortOption] || compareNames;
+
+                                return this.plantRange.slice().sort((p1, p2) => {
+                                    return compare(p1, p2);
                                 });
+                            },
+
+                            filteredItems: function () {
+                                return this.sortedItems.filter(item =>
+                                    this.selectedTypes.includes(item.type) &&
+                                    item.category.some(category => this.selectedCategories.includes(category))
+                                );
                             }
                         },
 
